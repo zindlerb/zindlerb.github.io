@@ -3,6 +3,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   width: 100%;
+  background-color: rgb(235, 235, 207);
 }
 
 .bold {
@@ -111,7 +112,7 @@ h2 {
 
 #personal {
  margin: 0px;
- color: #767676;
+ color: #4D4D4D;
 }
 
 p {
