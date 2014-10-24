@@ -1,0 +1,189 @@
+
+
+#question {
+    font-size: 70px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+a {
+  text-decoration:none;
+  color: #ffffff;
+}
+
+#sound {
+  text-align: right;
+  padding-right: 50px;
+}
+
+#info {
+  text-align: right;
+  font-size: 80px;
+  padding-right: 90px;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+
+}
+
+.row {
+  line-height: 110%;
+  width = 100%;
+}
+
+.middle {
+  text-align: center;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ff7700;
+  color: #ffffff;
+  margin:0;
+  padding:0;
+  height:100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+p {
+ cursor: default;
+ line-height: normal;
+}
+
+html {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+#container {
+   min-height:100%;
+   position:relative;
+}
+#header {
+   padding:10px;
+}
+#body {
+   padding:10px;
+   padding-bottom:150px;   /* Height of the footer */
+}
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:150px;   /* Height of the footer */
+}
+
+/* Rows and Columns */
+
+[class*='col-'] {
+  float: left;
+  padding-right: 20px;
+}
+
+[class*='col-']:last-of-type {
+  padding-right: 0;
+}
+
+.grid-pad {
+  padding: 0 0 20px 20px;
+}
+
+.grid-pad > [class*='col-']:last-of-type {
+  padding-right: 20px;
+}
+
+.col-2-3 {
+  width: 66.66%;
+}
+.col-1-3 {
+  width: 33.33%;
+}
+.col-1-12 {
+  width: 8.333333%;
+}
+.col-2-12 {
+  width: 16.666666%;
+}
+.col-3-12 {
+  width: 25%;
+}
+.col-4-12 {
+  width: 33.333333%;
+}
+.col-5-12 {
+  width: 41.666666%;
+}
+.col-6-12 {
+  width: 50%;
+}
+.col-7-12 {
+  width: 58.333333%;
+}
+.col-8-12 {
+  width: 66.666666%;
+}
+.col-9-12 {
+  width: 75%;
+}
+.col-10-12 {
+  width: 83.333333%;
+}
+.col-11-12 {
+  width: 91.666666%;
+}
+.col-12-12 {
+  width: 100%;
+}
+
+.row {
+  line-height: 110%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+
+}
+
+.question:hover {
+  opacity: .5;
+}
+
+.question {
+   font-size: 45px;
+}
+
+#about {
+  font-size: 25px;
+
+    height: 200px;
+    width: 500px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -250px;
+
+}
+
+#back {
+  font-size: 40px;
+   text-align: right;
+  padding-right: 90px;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
