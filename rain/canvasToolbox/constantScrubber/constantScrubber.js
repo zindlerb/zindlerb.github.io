@@ -90,7 +90,7 @@
 
           initVal = (typeof initVal === 'undefined') ? 1 : initVal;
 
-          console.log(initVal);
+          //console.log(initVal);
 
           if(numberPlace(initVal) > 1){
             var scrubScale = 1;
