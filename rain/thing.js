@@ -41,7 +41,7 @@ function draw(){
 
       function moon(){
         ctx.beginPath();
-        ctx.fillStyle = zpicker.add("rain", "white"); ;
+        ctx.fillStyle = zpicker.add("moon", "white"); ;
         ctx.arc(450, 30, scrubber.new("Moon Radius", 90), 0, 2 * Math.PI, false);
         ctx.fill();
       }
