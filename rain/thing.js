@@ -41,7 +41,7 @@ function draw(){
 
       function moon(){
         ctx.beginPath();
-        ctx.fillStyle = "white";
+        ctx.fillStyle = zpicker.add("rain", "white"); ;
         ctx.arc(450, 30, scrubber.new("Moon Radius", 90), 0, 2 * Math.PI, false);
         ctx.fill();
       }
@@ -53,9 +53,9 @@ function draw(){
         var height = 60
         var width = 30;
         var headSize = 20;
-        ctx.fillStyle = zpicker.add("head", "#FFEBAE");
+        ctx.fillStyle = "#FFEBAE"
         ctx.fillRect(x, 500 - height, width, height);
-        ctx.fillStyle = zpicker.add("body", "#FF6F55");
+        ctx.fillStyle = "#FF6F55"
         ctx.fillRect(x, 500 - height + headSize, width, height - headSize);
 
       }
