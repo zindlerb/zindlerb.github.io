@@ -2301,7 +2301,7 @@
             for(var pickerName in this.pickers){
               (function(){
                   var pName = pickerName;
-                  $("#" + pickerName).spectrum({color: self.colors[pickerName],
+                  $("#" + pName).spectrum({color: self.colors[pName],
                                             showInitial: true,
                                             move: function(color){
                                                self.pickers[pName](color);
