@@ -2281,12 +2281,20 @@
           } else{
 
             function pickerHTML(id){
-              return "<div class='flex'><div><input type='text' id='" + id + "' class='basic'/></div><p>" + id + "</p><p id='" + id + "HEX' ></p></div>"
+              return "<div class='flex'>" +
+                     "<div>" +
+                       "<input type='text' id='" + id + "' class='basic'/>" +
+                     "</div>" +
+                       "<p>" + id + "</p><p id='" + id + "HEX' ></p>" +
+                     "</div>"
             }
 
             var bodyChildNodes = $("body").children();
 
-            var pickerHtmlString = "<div id='zpickerOutMost'><div id='appContent' class='zcol-7-10'></div><div id='zpickerContainer' class='zcol-3-10'>"
+            var pickerHtmlString = "<div id='zpickerOutMost'>" +
+                                    "<div id='appContent' class='zcol-7-10'>" +
+                                    "</div>"+
+                                    "<div id='zpickerContainer' class='zcol-3-10'>"
 
             for(var k in this.pickers){
               pickerHtmlString += pickerHTML(k);
@@ -2301,6 +2309,7 @@
             for(var pickerName in this.pickers){
               (function(){
                   var pName = pickerName;
+                  console.log(pName, self);
                   $("#" + pName).spectrum({color: self.colors[pName],
                                             showInitial: true,
                                             move: function(color){
