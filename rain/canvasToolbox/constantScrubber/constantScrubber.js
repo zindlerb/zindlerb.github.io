@@ -46,7 +46,7 @@
            //Damn k is overwriting itself. with for loop due to delayed execution
            for(var k in scrubbers){
              var scrubSpan = document.getElementById('scrubber' + k);
-             console.log(k);
+             //console.log(k);
              (function(){
                 var drag = false;
                 var mouseDownPos = {x: 0, y: 0};
@@ -66,7 +66,7 @@
 
                 scrubSpan.addEventListener("mousedown", function(e){
 
-                    console.log(scrubbers[scopedK].value);
+                    //console.log(scrubbers[scopedK].value);
                     mouseDownPos = {x: e.offsetX, y: e.offsetY};
                     scrubOriginal = scrubbers[scopedK].value;
                     mouseMovePos = mouseDownPos;
