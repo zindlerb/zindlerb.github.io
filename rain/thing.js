@@ -22,7 +22,7 @@ function draw(){
 
 
       function renderRainDrop(point){
-          var width = 6;
+          var width = scrubber.new("Rain Width", 6);
           var height = scrubber.new("Rain Height", 18);
           ctx.fillStyle = zpicker.add("rainColor", "#2D4571");
           ctx.fillRect(point.x, point.y, width, height);

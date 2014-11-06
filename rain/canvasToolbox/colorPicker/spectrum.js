@@ -2289,22 +2289,25 @@
                      "</div>"
             }
 
-            var bodyChildNodes = $("body").children();
+            //var bodyChildNodes = $("body").children();
 
-            var pickerHtmlString = "<div id='zpickerOutMost'>" +
+            var pickerHtmlString = "<div id='zpickerContainer' class='bottom'>";
+
+                /* "<div id='zpickerOutMost'>" +
                                     "<div id='appContent' class='zcol-7-10'>" +
-                                    "</div>"+
-                                    "<div id='zpickerContainer' class='zcol-3-10'>"
+                                    "</div>"+ */
+
 
             for(var k in this.pickers){
               pickerHtmlString += pickerHTML(k);
             }
 
-            pickerHtmlString += "</div></div>"
+            pickerHtmlString += "</div>"
+            //</div>
 
             $("body").append(pickerHtmlString);
 
-            $("#appContent").append(bodyChildNodes);
+            //$("#appContent").append(bodyChildNodes);
 
             for(var pickerName in this.pickers){
               (function(){
