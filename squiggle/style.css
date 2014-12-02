@@ -1,0 +1,30 @@
+.circle {
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+  background: red;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	/* width and height can be anything, as long as they're equal */
+}
+
+.CodeMirror {
+  height: 600px;
+}
+
+#canvas {
+  /*Don't allow selection*/
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  border: 1px solid #777;
+  background-color: #fff;
+  box-shadow: 0px 1px 5px #888;
+}
