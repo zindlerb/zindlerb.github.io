@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>svg transformations</title>
+    <meta name="description" content="">
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <div class= "center">
+      <h1>SVG Transformations</h1>
+      <p>
+
+      </p>
+      <h2>Translate</h2>
+      <p>
+        Translate is the simplest of the SVG transformations. It takes two arguments x and y. When you translate an svg element you simply move the x and y origin by the amount specified with the x and y parameters. Now the shape is drawn relative to the new x and y origin. Try dragging around the gray dot to get a feel for how translate works.
+      </p>
+      <div class = "svgContainer">
+        <div class="translateContainer">
+        </div>
+        <pre class="prettyprint linenums">
+var svgContainer = d3.select("body").append("svg")
+                            .attr("width",200)
+                            .attr("height",200);
+svgContainer.append("circle")
+            .attr("transform", translate(<span class="translateX"></span>, <span class="translateY"></span>))
+            .attr("cx", function (d) { return <span class="translateCX"></span>; })
+            .attr("cy", function (d) { return <span class="translateCY"></span>; })
+            .attr("r", function (d) { return 5; })
+            .style("fill", function (d) { return "purple"; })
+        </pre>
+      </div>    
+    <div>
+      <h2>Scale</h2>
+      <p>
+        The scale svg transform takes two arguments x and y. These arguments determine how much each of the axis will be scaled by. Try setting the x scale down low, and the y scale up high. Drag the grey knobs to scale the x and y axis. Observe the difference in speeds when you drag horizontally vs. vertically.  
+      </p>
+      <div class ="svgContainer">
+      <div class="scaleContainer">
+      </div>
+      <pre class="prettyprint linenums">
+var svgContainer = d3.select("body").append("svg")
+                            .attr("width",200)
+                            .attr("height",200);
+svgContainer.append("circle")
+            .attr("transform", scale(<span class="scaleX"></span>, <span class="scaleY"></span>))
+            .attr("cx", function (d) { return <span class="scaleCX"></span>; })
+            .attr("cy", function (d) { return <span class="scaleCY"></span>; })
+            .attr("r", function (d) { return 5; })
+            .style("fill", function (d) { return "purple"; })
+      </pre>
+    </div>
+    </div>
+    <div>
+      <h2>Rotate</h2>
+      <p>
+        Rotate takes 3 arguments: a rotation angle, and optional x and y points to rotate around. If the x and y points are not specified the shape will rotate around the origin. Grab the gray knob to rotate the example shape.
+      </p>
+      <div class = "svgContainer">
+      <div class="rotateContainer">
+      </div>
+      <pre class="prettyprint linenums">
+var svgContainer = d3.select("body").append("svg")
+                            .attr("width",200)
+                            .attr("height",200);
+svgContainer.append("circle")
+            .attr("transform", rotate(<span class="degrees"></span>, <span class="rotateX"></span>, <span class="rotateY"></span>))
+            .attr("cx", function (d) { return <span class="rotateCX"></span>; })
+            .attr("cy", function (d) { return <span class="rotateCY"></span>; })
+            .attr("r", function (d) { return 5; })
+            .style("fill", function (d) { return "purple"; })
+      </pre>
+    </div>
+    </div>
+    <div>
+      <h2>skewX</h2>
+      <p>
+        SkewX is a slightly confusing transformation. It only takes one argument. We can think of the argument it takes as the number of degrees we will tilt the y axis. Our shape is then drawn with this tilted y axis. Having our y axis tilted causes the skewing effect we see. To get a better feel for how skew works try tilting the y axis and dragging the shape directly up and down.
+      </p>
+      <div class ="svgContainer">
+      <div class="skewXContainer">
+      </div>
+      <pre class="prettyprint linenums">
+var svgContainer = d3.select("body").append("svg")
+                            .attr("width",200)
+                            .attr("height",200);
+svgContainer.append("circle")
+            .attr("transform", skewX(<span class="skewXAmount"></span>))
+            .attr("cx", function (d) { return <span class="skewXCX"></span>; })
+            .attr("cy", function (d) { return <span class="skewXCY"></span>; })
+            .attr("r", function (d) { return 5; })
+            .style("fill", function (d) { return "purple"; })
+      </pre>
+    </div>
+    </div>
+    <div>
+      <h2>skewY</h2>
+      <p>
+        SkewY is exactly like skewX except we are skewing along the Y axis instead of the X axis.
+      </p>
+      <div class = "svgContainer">
+        <div class="skewYContainer">
+        </div>
+        <pre class="prettyprint linenums">
+var svgContainer = d3.select("body").append("svg")
+                            .attr("width",200)
+                            .attr("height",200);
+svgContainer.append("circle")
+            .attr("transform", skewY(<span class="skewYAmount"></span>))
+            .attr("cx", function (d) { return <span class="skewYCX"></span>; })
+            .attr("cy", function (d) { return <span class="skewYCY"></span>; })
+            .attr("r", function (d) { return 5; })
+            .style("fill", function (d) { return   "purple"; })
+        </pre>
+      </div>
+    </div>
+    <h2>Conclusion</h2>
+      <p>
+        The transformations shown here were demonstrated in insolation, but all of these transformations can be combined and stacked.If you want more in depth resources on svg transformations check out the <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform">MDN tutorial</a> and the <a href="http://www.w3.org/TR/SVG/coords.html">W3 Spec</a>
+      </p>
+    </div>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
