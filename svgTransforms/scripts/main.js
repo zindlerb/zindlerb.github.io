@@ -96,8 +96,8 @@ function transformBlock(type, renderFunc) {
       }
 
       d3.select(this)
-        .attr("x", d.x += dragEdge(d, d3.event.dx, "x"))
-        .attr("y", d.y += dragEdge(d, d3.event.dy, "y"));
+        .attr("x", d.x += d3.event.dx)
+        .attr("y", d.y += d3.event.dy);
     
     
       d3.select("." + type + "CX").text(d.x);
