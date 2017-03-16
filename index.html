@@ -1,117 +1,93 @@
 <html>
-    <head>
-        <title>Brian Zindler</title>
-        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="styles/style.css">
-        <script type="text/javascript" src="libs/svg.min.js"></script>
-        <script type="text/javascript" src="libs/jquery-1.11.0.min.js"></script>
-        <meta name="viewport" content="width=device-width">
-    </head>
-    <body>
-            <h1 id="bigName">Brian Zindler</h1>
-            <div class="row grid-pad">
-                <div class="lg-col-6-12 sm-col-12-12 md-col-12-12">
-                    <p id="personal">I am a software engineer currently living in San Francisco. I am interested in programming, data visualization, and improv.
-                   </p>
-                </div>
-            </div>
-               <div class="row grid-pad">
-                <div class="lg-col-6-12 sm-col-12-12 md-col-12-12">
-                  <div class="row">
-                    <div class="fleft" id="projects"></div>
-                    <h2 class="fleft title">Projects</h2>
-                  </div>
-                  <div class="row">
-                    <a href="http://54.68.128.95:8000/">Selfhub</a>
-                    <p class="blurb">
-                      A github like website for storing and aggregating population wide health and fitness related data. <a href="https://github.com/selfhub/selfhub">Source</a>
-                    </p>
-                  </div>
-                  <div class="row">
-                    <a href="https://github.com/zindlerb/suppose">Suppose</a>
-                    <p class="blurb">
-                      A sketching tool based on git. It allows a presenter to explore multiple possibilities for a single drawing.
-                    </p>
-                  </div>
-                  <div class="row">
-                    <a href="playfair/index.html">Playfair</a>
-                    <p class="blurb">A tool for drawing dynamic images. Right now it is a port of Bret Victor's tool from his talk <a href="https://vimeo.com/66085662">Drawing Dynamic Visualizations</a>. Check out the source <a href="https://github.com/zindlerb/playfair">here</a>.</p>
-                  </div>
-                  <div class="row">
-                    <a href="squiggle/index.html">Squiggle</a>
-                    <p class="blurb">Squiggle lets you draw html canvas paths, and export them as javascript functions.</p>
-                  </div>
-                  <div class="row">
-                    <a href="officeHours/index.html">Office Hours</a>
-                    <p class="blurb">A fun little slideshow of YCombinator office hour quotes. Source <a href="https://github.com/zindlerb/Cannon">here</a>.</p>
-                  </div>
-                </div>
-               </div>
-               <div class="row grid-pad">
-                <div class="lg-col-6-12 sm-col-12-12 md-col-12-12">
-                  <div class="row">
-                    <div class="fleft" id="essays"></div>
-                    <h2 class="fleft title">Writing</h2>
-                  </div>
-                  <div class="row">
-                    <a href="svgTransforms/index.html">SVG Transforms Tutorial</a>
-                    <p class="blurb">An interactive primer on SVG transforms</p>
-                  </div>
-                  <div class="row">
-                    <a href="https://medium.com/@zindlerb/guide-to-light-table-watches-fad560f698d3">Guide to Light Table Watches</a>
-                    <p class="blurb">A guide to using the watches feature in the Light Table IDE.</p>
-                  </div>
-                  <div class="row">
-                    <a href="http://zindlerb.svbtle.com/responsive-canvas-in-om">Responsive Canvas in OM</a>
-                    <p class="blurb">
-                      A tutorial on how to set up a responsive canvas component in OM
-                    </p>
-                  </div>
-                  <div class="row">
-                    <a href="http://zindlerb.svbtle.com/using-backbone-router-with-react">Using Backbone Router with React</a>
-                    <p class="blurb">
-                      A walkthrough of how to set up a backbone router in React.
-                    </p>
-                  </div>
-                  <div class="row">
-                    <a href="http://zindlerb.svbtle.com/from-javascript-to-clojurescript-immutability">From Javascript to Clojurescript: Immutability</a>
-                    <p class="blurb">
-                      An explanation of immutable data structures using javascript and clojurescript as examples.
-                    </p>
-                  </div>
-                  <div class="row">
-                    <a href=""></a>
-                    <p class="blurb">
-                      
-                    </p>
-                  </div>
-                </div>
-               </div>
-              <div class="row grid-pad">
-               <div class="lg-col-6-12 sm-col-12-12 md-col-12-12">
-                <div class="row">
-                  <div class="fleft" id="data"></div>
-                  <h2 class="fleft title">Data Visualizations</h2>
-                </div>
-                <div class="row">
-                  <a href="http://bl.ocks.org/zindlerb/9680392">LU Graduate Pie Chart</a>
-                  <p class="blurb">An interactive pie chart of the status of LU graduates.</p>
-                </div>
-                <div class="row">
-                    <a href="http://bl.ocks.org/zindlerb/9680652">LU Graduate Scatter Plot</a>
-                    <p class="blurb">An interactive scatter plot of the outcomes of LU graduates.</p>
-                </div>
-               </div>
-              </div>
-            <div class="row grid-pad">
-                <div class="lg-col-6-12 sm-col-12-12 md-col-12-12">
-                    <p>Places to find me:
-                        <br> Email: <a href="mailto:zindlerb@gmail.com">zindlerb[at]gmail.com</a>.
-                        Twitter: <a href="https://twitter.com/zindlerb">@zindlerb</a>.
-                        Github: <a href="https://github.com/zindlerb">zindlerb</a>.
-                    </p>
-                </div>
-            </div>
-        <script type="text/javascript" src="logic.js"></script>
-    </body>
+  <head>
+    <title>Brian Zindler</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/tachyons-flex.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body>
+    <div class="ph3 site-container">
+      <h1 class="f1 slab mb2">Brian Zindler</h1>
+      <p class="f4 mv1">
+        I’m a software engineer working in San Francisco.
+        Some of my interests include interface design, film, and programming languages.
+      </p>
+      <h2 class="f2 slab mb3">Projects</h2>
+      <div>
+        <a class="project-link" href="zindlerb.github.io/motif">Motif</a>
+        <p class="">
+          An editor for making static websites.
+        </p>
+      </div>
+      <div>
+        <a class="project-link" href="https://github.com/topsoiljs/topsoil">Topsoil</a>
+        <p class="">
+          A React/Node layer on top of the terminal.
+        </p>
+      </div>
+      <div>
+        <a class="project-link" href="https://github.com/selfhub/selfhub">Selfhub</a>
+        <p class="">
+          A github like website for storing and aggregating population wide health and fitness related data.
+        </p>
+      </div>
+      <div class="">
+        <a class="project-link" href="https://github.com/zindlerb/suppose">Suppose</a>
+        <p class="">
+          A sketching tool based on git. It allows a presenter to explore multiple possibilities for a single drawing.
+        </p>
+      </div>
+      <div class="">
+        <a class="project-link" href="https://github.com/zindlerb/playfair">Playfair</a>
+        <p class="">A tool for drawing dynamic images. Right now it is a port of Bret Victor's tool from his talk <a href="https://vimeo.com/66085662">Drawing Dynamic Visualizations</a>.</p>
+      </div>
+      <div class="">
+        <a class="project-link" href="squiggle/index.html">Squiggle</a>
+        <p class="">Squiggle lets you draw html canvas paths, and export them as javascript functions.</p>
+      </div>
+      <div class="">
+        <a class="project-link" href="officeHours/index.html">Office Hours</a>
+        <p class="">A little slideshow of YCombinator office hour quotes. Source <a href="https://github.com/zindlerb/Cannon">here</a>.</p>
+      </div>
+
+      <h2 class="f2 slab mb3">Writing</h2>
+
+      <div class="">
+        <a class="project-link" href="svgTransforms/index.html">SVG Transforms Tutorial</a>
+        <p class="">An interactive primer on SVG transforms</p>
+      </div>
+
+      <div class="row">
+        <a href="https://medium.com/@zindlerb/guide-to-light-table-watches-fad560f698d3"
+           class="project-link">
+          Guide to Light Table Watches
+        </a>
+        <p class="">A guide to using the watches feature in the Light Table IDE.</p>
+      </div>
+      <div class="">
+        <a class="project-link" href="http://zindlerb.svbtle.com/responsive-canvas-in-om">
+          Responsive Canvas in OM
+        </a>
+        <p class="">
+          A tutorial on how to set up a responsive canvas component in OM
+        </p>
+      </div>
+      <div class="">
+        <a class="project-link"
+           href="http://zindlerb.svbtle.com/using-backbone-router-with-react">
+          Using Backbone Router with React
+        </a>
+        <p class="">
+          A walkthrough of how to set up a backbone router in React.
+        </p>
+      </div>
+
+      <h3 class="f3 slab mb3">Places to find me:</h3>
+      <p>Email: <a href="mailto:zindlerb@gmail.com">zindlerb[at]gmail.com</a>.</p>
+      <p>Twitter: <a href="https://twitter.com/zindlerb">@zindlerb</a>.</p>
+      <p>Github: <a href="https://github.com/zindlerb">zindlerb</a>.</p>
+    </div>
+  </body>
 </html>
