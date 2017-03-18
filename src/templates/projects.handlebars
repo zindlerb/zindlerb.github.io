@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title>Brian Zindler</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
+    <script src="./bundle.js"></script>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="projects">
+    <div class="ph3 site-container">
+      <h1 class="f1 slab mb3">Brian Zindler</h1>
+      <p class="f4 mv1">
+        I’m a software engineer working in San Francisco.
+        Some of my interests include interface design, film, and programming languages.
+      </p>
+      <h2 class="f2 slab mb3">Projects</h2>
+      <div>
+        <a class="project-link" href="https://zindlerb.github.io/motif/">Motif</a>
+        <p class="project-description">
+          An editor for making static websites.
+        </p>
+      </div>
+      <div>
+        <a class="project-link" href="https://github.com/topsoiljs/topsoil">Topsoil</a>
+        <p class="project-description">
+          A React/Node layer on top of the terminal.
+        </p>
+      </div>
+      <div>
+        <a class="project-link" href="https://github.com/selfhub/selfhub">Selfhub</a>
+        <p class="project-description">
+          A github like website for storing and aggregating population wide health and fitness related data.
+        </p>
+      </div>
+      <div class="">
+        <a class="project-link" href="https://github.com/zindlerb/suppose">Suppose</a>
+        <p class="project-description">
+          A sketching tool based on git. It allows a presenter to explore multiple possibilities for a single drawing.
+        </p>
+      </div>
+      <div class="">
+        <a class="project-link" href="https://github.com/zindlerb/playfair">Playfair</a>
+        <p class="project-description">A tool for drawing dynamic images. It is a port of Bret Victor's tool from his talk <a href="https://vimeo.com/66085662">Drawing Dynamic Visualizations</a>.</p>
+      </div>
+      <div class="">
+        <a class="project-link" href="squiggle/index.html">Squiggle</a>
+        <p class="project-description">Squiggle lets you draw html canvas paths, and export them as javascript functions.</p>
+      </div>
+      <div class="">
+        <a class="project-link" href="officeHours/index.html">Office Hours</a>
+        <p class="project-description">A little slideshow of YCombinator office hour quotes. Source <a href="https://github.com/zindlerb/Cannon">here</a>.</p>
+      </div>
+
+      <h2 class="f2 slab mb3">Writing</h2>
+      {{#each writings}}
+      <div class="">
+        <a class="project-link" href="{{link}}">{{title}}</a>
+        <p class="project-description">{{description}}</p>
+      </div>
+      {{/each}}
+
+      <h3 class="f3 slab mb3">Places to find me:</h3>
+      <p>Email: <a href="mailto:zindlerb@gmail.com">zindlerb[at]gmail.com</a>.</p>
+      <p>Twitter: <a href="https://twitter.com/zindlerb">@zindlerb</a>.</p>
+      <p>Github: <a href="https://github.com/zindlerb">zindlerb</a>.</p>
+    </div>
+  </body>
+</html>

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node ./build_site.js && webpack"
+    "build": "rm -r dist/* && node ./build_site.js && webpack"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,8 @@
   "homepage": "https://github.com/zindlerb/zindlerb.github.io#readme",
   "dependencies": {
     "handlebars": "^4.0.6",
-    "marked": "^0.3.6"
+    "marked": "^0.3.6",
+    "slug": "^0.9.1"
   },
   "devDependencies": {
     "css-loader": "^0.27.3",
