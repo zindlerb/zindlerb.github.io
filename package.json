@@ -1,0 +1,30 @@
+{
+  "name": "zindlerb.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./build_site.js && webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zindlerb/zindlerb.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zindlerb/zindlerb.github.io/issues"
+  },
+  "homepage": "https://github.com/zindlerb/zindlerb.github.io#readme",
+  "dependencies": {
+    "handlebars": "^4.0.6",
+    "marked": "^0.3.6"
+  },
+  "devDependencies": {
+    "css-loader": "^0.27.3",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.14.1",
+    "webpack": "^2.2.1"
+  }
+}
