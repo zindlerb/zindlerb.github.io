@@ -2,10 +2,13 @@ const fs = require('fs');
 const handlebars = require('handlebars');
 const marked = require('marked');
 const path = require('path');
-var slug = require('slug');
+const slug = require('slug');
+const rimraf = require('rimraf');
+
 
 // DELETE ALL UNPROTECTED IN ROOT
 const protectedPaths = [
+  '.DS_Store',
   '.git',
   '.gitignore',
   'README.md',
@@ -17,10 +20,17 @@ const protectedPaths = [
   'rain',
   'squiggle',
   'src',
+  'svgTransforms',
+  'webpack.config.js',
+  'writing'
 ];
 
 fs.readdir('.', (err, files) => {
-  console.log('files', files);
+  files.forEach((file) => {
+    if (protectedPaths.indexOf(file) === -1) {
+      rimraf(file);
+    }
+  });
 });
 
 marked.setOptions({
