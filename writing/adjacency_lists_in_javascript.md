@@ -1,4 +1,3 @@
-date: 9/10/16
 title: Ajacency Lists in Javascript
 ~---~
 # Ajacency Lists in Javascript
