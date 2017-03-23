@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -r dist/* && node ./build_site.js && webpack"
+      "build": "node ./build_site.js && webpack",
+      "clean": "node ./clean.js"
   },
   "repository": {
     "type": "git",

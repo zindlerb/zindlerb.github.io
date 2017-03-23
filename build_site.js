@@ -6,32 +6,6 @@ const slug = require('slug');
 const rimraf = require('rimraf');
 
 
-// DELETE ALL UNPROTECTED IN ROOT
-const protectedPaths = [
-  '.DS_Store',
-  '.git',
-  '.gitignore',
-  'README.md',
-  'build_site.js',
-  'dist',
-  'node_modules',
-  'officeHours',
-  'package.json',
-  'rain',
-  'squiggle',
-  'src',
-  'svgTransforms',
-  'webpack.config.js',
-  'writing'
-];
-
-fs.readdir('.', (err, files) => {
-  files.forEach((file) => {
-    if (protectedPaths.indexOf(file) === -1) {
-      rimraf(file);
-    }
-  });
-});
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -92,16 +66,11 @@ fs.readdir('./writing', (err, files) => {
   console.log('Building Blog Posts');
   blogPostData.forEach((blogPostDatum) => {
     fs.access(blogPostDatum.slug, (err) => {
-      if (err.code === "ENOENT") {
+      if (err && err.code === "ENOENT") {
         fs.mkdirSync(blogPostDatum.slug);
-        return;
       }
 
-      transformHandlebars(
-        'blogpost',
-        blogPostDatum,
-        path.join(blogPostDatum.slug, 'index.html')
-      );
+      transformHandlebars('blogpost', path.join(blogPostDatum.slug, 'index.html'), blogPostDatum);
     });
   });
 
