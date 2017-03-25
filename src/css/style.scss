@@ -1,7 +1,5 @@
 .projects {
-  html {
-    font-family: 'Roboto', sans-serif;
-  }
+  font-family: 'Roboto', sans-serif;
 
   .slab {
     font-family: 'Roboto Slab', serif;
@@ -35,4 +33,47 @@
     border-bottom: 2.5px solid #72D1A6;
   }
 
+}
+
+.blogpost {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.1rem;
+  max-width: 640px;
+  width: 100%;
+  margin: 0px auto;
+
+  .homepage-link {
+    text-decoration: none;
+  }
+
+  p {
+    line-height: 1.3;
+  }
+
+  img {
+    display: block;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-family: 'Rosario', sans-serif;
+  }
+
+  a {
+    color: #d64f37;
+    cursor: pointer;
+  }
+
+  a:hover {
+    opacity: .75;
+  }
+
+  pre {
+    font-size: 1rem;
+    font-family: monaco, monospace;
+  }
 }

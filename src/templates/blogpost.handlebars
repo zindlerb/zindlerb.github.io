@@ -1,13 +1,19 @@
 <html>
   <head>
     <title>{{title}}</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+    <link        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Rosario" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
-    <script src="./bundle.js"></script>
+    <script src="../dist/bundle.js"></script>
     <meta name="viewport" content="width=device-width">
   </head>
   <body>
-    <div>
+    <div class="blogpost ph4 pv2">
+      <div class="mv3">
+        <a class="homepage-link" href="/"><i class="fa fa-home" aria-hidden="true"></i>
+zindlerb</a>
+      </div>
       {{{markdown}}}
     </div>
   </body>
