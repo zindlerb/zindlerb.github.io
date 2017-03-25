@@ -6,15 +6,16 @@
     <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Rosario" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
     <script src="../dist/bundle.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
   </head>
-  <body class="w-100">
+  <body>
     <div class="blogpost ph4 pv2">
       <div class="mv3">
         <a class="homepage-link" href="/"><i class="fa fa-home" aria-hidden="true"></i>
 zindlerb</a>
       </div>
-      <h1 id="ajacency-lists-in-javascript">Ajacency Lists in Javascript</h1>
+      <div class="markdown">
+        <h1 id="ajacency-lists-in-javascript">Ajacency Lists in Javascript</h1>
 <p>I have been reading through the <a href="http://www.algorist.com/">Algorithm Design Manual</a>. In order to get a deeper understanding of the graph algorithms in Chapter 5, I decided to reimplement them in Javascript. Checkout the github repo <a href="https://github.com/zindlerb/javascript_adjacency_list">here</a>.</p>
 <p>All the algorithms in Chapter 5 center around a data structure called the Adjacency List. An Adjacency List stores a graph in an array of linked lists. Every index in the array corresponds to a vertex on the graph and every node in the linked list corresponds to an edge. The algorithms are hard to understand without examples so here are some illustrated examples of the different inputs for the test cases:</p>
 <p><img src="../assets/adjList1.png" alt="AdjList1"></p>
@@ -33,6 +34,8 @@ cd javascript_adjacency_list
 npm install
 npm run test
 </code></pre>
+
+      </div>
 
     </div>
   </body>

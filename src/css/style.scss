@@ -46,21 +46,28 @@
     text-decoration: none;
   }
 
-  p {
-    line-height: 1.3;
-  }
+  .markdown {
+    p {
+      line-height: 1.3;
+    }
 
-  img {
-    display: block;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  }
+    p > img {
+      display: block;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
 
-  h1 {
-    font-size: 1.5rem;
-    font-family: 'Rosario', sans-serif;
+    h1 {
+      font-size: 1.5rem;
+      font-family: 'Rosario', sans-serif;
+    }
+
+    pre {
+      font-size: 1rem;
+      font-family: monaco, monospace;
+    }
   }
 
   a {
@@ -70,10 +77,5 @@
 
   a:hover {
     opacity: .75;
-  }
-
-  pre {
-    font-size: 1rem;
-    font-family: monaco, monospace;
   }
 }
