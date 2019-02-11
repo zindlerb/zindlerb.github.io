@@ -1,0 +1,51 @@
+body {
+  width: 650px;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 150px;
+}
+
+.sans {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.serif {
+  font-family: 'Source Serif Pro', serif;
+}
+
+p, li {
+  font-size: 18px;
+}
+
+li {
+  margin: 6px 0px;
+}
+
+.header {
+  margin: 12px 0px;
+}
+
+.sub-header {
+  font-size: 18px;
+  margin: 3px 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.first-paragraph {
+  margin-top: 40px;
+}
+
+.highlight {
+  color: #FF725C
+}
+
+.italic {
+  font-style: italic;
+}
