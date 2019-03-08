@@ -3,6 +3,7 @@ body {
   margin: auto;
   padding-top: 30px;
   padding-bottom: 150px;
+  color: #333333;
 }
 
 .sans {
@@ -48,4 +49,8 @@ a:hover {
 
 .italic {
   font-style: italic;
+}
+
+b {
+  color: black;
 }
