@@ -6,6 +6,10 @@ body {
   color: #333333;
 }
 
+.page-info-container {
+  margin-bottom: 40px;
+}
+
 .sans {
   font-family: 'Source Sans Pro', sans-serif;
 }
