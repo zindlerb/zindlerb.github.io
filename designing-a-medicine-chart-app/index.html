@@ -1,14 +1,15 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro" rel="stylesheet">
     <link href="/snippets/style.css" rel="stylesheet">
   </head>
-  <body>
-    <h1>Designing a Medicine Chart App</h1>
-    <div class="metadata">
-      <div>Author: Brian Zindler</div>
-      <div>Date: 03/13/19</div>
+  <body class="serif">
+    <div class="page-info-container">
+      <h1 class="sans header">Designing a Medicine Chart App</h1>
+      <h2 class="sans sub-header">Author: <a href="https://twitter.com/zindlurb">Brian Zindler</a></h2>
+      <h2 class="sans sub-header">Date: 03/13/19</h2>
     </div>
-
     <p>
       Around March 2019 I had surgery to fix a respiratory issue in my chest. The surgery went very well. During recovery I had to keep track of a lot of medications. To track my medications, the hospital gave me a spreadsheet. Here is an example sheet:
     </p>
@@ -40,6 +41,7 @@
       As I was working on the prototype there was a nagging question in the back of my head. "Is this actually better than paper?". My mind kept circling back to a quote from the UI design essay <a href="http://worrydream.com/MagicInk/#p104](http://worrydream.com/MagicInk/#p104">Magic Ink</a>.
     </p>
     <img
+      class="w90 db m-auto"
       src="/designing-a-medicine-chart-app/-0c4aa648-44d5-4da1-8dcb-234147da32cduntitled"
       alt="Magic Ink Quote"
     />
@@ -48,10 +50,10 @@
       To see what issues an app would really solve, I drew up some pros and cons of paper.
     </p>
 
-    <h2>Pros and Cons of Paper Medicine Logs</h2>
+    <h2 class="sans">Pros and Cons of Paper Medicine Logs</h2>
 
     <div class="flex">
-      <div>
+      <div class="w100">
         <div>Pros:</div>
         <ul>
           <li>Today's medication information is available at a glance.</li>
@@ -61,7 +63,7 @@
           <li>No security issues. Someone is unlikely to break into your house to steal a medicine chart.</li>
         </ul>
       </div>
-      <div>
+      <div class="w100">
         <div>Cons:</div>
         <ul>
           <li>If you want to update what medications you are taking on the go you have to carry the paper with you.</li>
@@ -95,20 +97,18 @@
       <span class="light-text">"In order to share your medication progress with your doctor you need to take a picture of the chart and show it to them or verbally tell them."</span> - I only had to share my medical progress once in during a checkup 1 week after operation. The data that the doctor wanted to know was very high level. For example: "Which of these as needed medications are you still taking?". The only thing they really cared about was what I had done yesterday. But, I could see automatic sharing of progress with doctors to be useful for more complex cases.
     </p>
     <p>
-      <span class="light-text">"When you look at the sheet you usually need to check the time to see how soon things are. It would be nice to have the current time shown in context."</span> - Checking the time is not hard. There are usually time keeping devices scattered around the house (stove, microwave, wall clocks etc.) and I almost always had my phone on me. But, It would be cool to see the current time slide across the chart. That way you would always know when it is time to take a medication.
+      <span class="light-text">"When you look at the sheet you usually need to check the time to see how soon things are. It would be nice to have the current time shown in context."</span> - Checking the time is not hard. There are usually time keeping devices scattered around the house (stove, microwave, wall clocks etc.) and I almost always had my phone on me. But, It would be cool to see the current time slide across the chart. That way you would always know when it is time to take a medication. The time could move across the screen like in Mario Paint Composer.
     </p>
     <img
+      class="w70 m-auto db"
       src="/designing-a-medicine-chart-app/marupaing-a4899a06-c1b7-421c-b6cd-153009c1ec61.gif"
       alt="Mario Paint Composer Example"
     />
-
-    <p>The time could move across the screen like in Mario Paint Composer.</p>
-
     <p>
       When I examined the pros and cons I realized an app wouldn't really add that much value. Maybe an app for easily creating medicine logs to print would be useful. But, a digital medicine log didn't seem like it would add that much value. Then I started thinking about what it would look like if I could bring computation to the paper instead of the paper to computation.
     </p>
 
-    <h2>Dynamicland</h2>
+    <h2 class="sans">Dynamicland</h2>
     <p>
       In Oakland, CA there is a building that is a computer. This building is home to the <a href="https://dynamicland.org/">Dynamicland</a> research project. Right now, the building is outfitted with motion tracking projectors distributed across the ceiling. In the building there are special pieces of paper with code on them. The projectors can recognize these sheets of paper and run their code. The result of the code is then projected on the paper.
     </p>
@@ -154,12 +154,12 @@
       In the mean time, I will keep using my paper medicine log.
     </p>
 
-    <h2>Further reading:</h2>
+    <h2 class="sans">Further reading:</h2>
     <p>
       <a href="https://rsnous.com/posts/notes-from-dynamicland-geokit/">Omar Rizwan's essay</a> on designing a map application in Dynamicland is probably the best overview of how Dynamicland works.
     </p>
     <p>
-      <a href="http://klr.tumblr.com/post/153279790133/whats-so-great-about-the-digital-medium-again">May li Ko's post</a> on what makes the digital medium different. While designing, I kept on thinking if any of attributes of dynamic media listed were useful to my medicine chart.
+      <a href="http://klr.tumblr.com/post/153279790133/whats-so-great-about-the-digital-medium-again">May-Li Khoe's post</a> on what makes the digital medium different. While designing, I kept on thinking if any of attributes of dynamic media listed were useful to my medicine chart.
     </p>
   </body>
 </html>
