@@ -94,3 +94,13 @@ a:hover {
 b {
   color: black;
 }
+
+@media (min-width: 30em) {
+  .multi-column {
+    display: flex;
+  }
+
+  .multi-column .column {
+    width: 100%;
+  }
+}
