@@ -2,7 +2,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   padding: 0px 25px;
   margin: auto;
-  width: 700px;
+  max-width: 700px;
   color: #333;
   line-height: 1.3em;
 }

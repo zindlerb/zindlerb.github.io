@@ -1,3 +1,7 @@
 [x] essence of linear algebra working
-[ ] snippets working
+[x] snippets working
 [ ] date and author on all writing
+[ ] snippets -> web snippets
+[ ] auto comms article
+[ ] bo tools article
+[ ] developer tools gotchas
