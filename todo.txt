@@ -1,2 +1,2 @@
-[ ] restyle links
-[ ] bring in fonts
+[ ] essence of linear algebra working
+[ ] snippets working
