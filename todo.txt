@@ -1,2 +1,3 @@
-[ ] essence of linear algebra working
+[x] essence of linear algebra working
 [ ] snippets working
+[ ] date and author on all writing
