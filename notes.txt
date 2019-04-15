@@ -1,0 +1,24 @@
+Site outline:
+
+Blurb about me:
+
+
+Projects:
+	Unofficial Essence of Linear Algebra Interactive Companion
+	Permute
+Writing:
+	Designing a medicin chart app
+Old Stuff
+	Motif
+
+
+
+
+
+To write:
+	Chrome debugging gotchas
+		Mutability in chrome console
+		Debugger not showing the whole story
+		Margin collapsing
+		Something else???? - check my Jason Threads
+	Understanding variables in C
