@@ -1,575 +1,453 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Improving Flowchart Editing Tools</title><style>
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	text-indent: -1.7em;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	opacity: 0.5;
-}
-
-.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif; }
-.mono { font-family: Nitti, 'Microsoft YaHei', '微软雅黑', monospace; }
-.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
-
-.pdf .code { font-family: Source Code Pro, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
-
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
-
-.pdf .mono { font-family: PT Mono, Nitti, 'Microsoft YaHei', '微软雅黑', monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
-
-.highlight-default {
-}
-.highlight-gray {
-	color: rgb(155,154,151);
-}
-.highlight-brown {
-	color: rgb(100,71,58);
-}
-.highlight-orange {
-	color: rgb(217,115,13);
-}
-.highlight-yellow {
-	color: rgb(223,171,1);
-}
-.highlight-teal {
-	color: rgb(15,123,108);
-}
-.highlight-blue {
-	color: rgb(11,110,153);
-}
-.highlight-purple {
-	color: rgb(105,64,165);
-}
-.highlight-pink {
-	color: rgb(173,26,114);
-}
-.highlight-red {
-	color: rgb(224,62,62);
-}
-.highlight-gray_background {
-	background: rgb(235,236,237);
-}
-.highlight-brown_background {
-	background: rgb(233,229,227);
-}
-.highlight-orange_background {
-	background: rgb(250,235,221);
-}
-.highlight-yellow_background {
-	background: rgb(251,243,219);
-}
-.highlight-teal_background {
-	background: rgb(221,237,234);
-}
-.highlight-blue_background {
-	background: rgb(221,235,241);
-}
-.highlight-purple_background {
-	background: rgb(234,228,242);
-}
-.highlight-pink_background {
-	background: rgb(244,223,235);
-}
-.highlight-red_background {
-	background: rgb(251,228,228);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(55, 53, 47, 0.6);
-	fill: rgba(55, 53, 47, 0.6);
-}
-.block-color-brown {
-	color: rgb(100,71,58);
-	fill: rgb(100,71,58);
-}
-.block-color-orange {
-	color: rgb(217,115,13);
-	fill: rgb(217,115,13);
-}
-.block-color-yellow {
-	color: rgb(223,171,1);
-	fill: rgb(223,171,1);
-}
-.block-color-teal {
-	color: rgb(15,123,108);
-	fill: rgb(15,123,108);
-}
-.block-color-blue {
-	color: rgb(11,110,153);
-	fill: rgb(11,110,153);
-}
-.block-color-purple {
-	color: rgb(105,64,165);
-	fill: rgb(105,64,165);
-}
-.block-color-pink {
-	color: rgb(173,26,114);
-	fill: rgb(173,26,114);
-}
-.block-color-red {
-	color: rgb(224,62,62);
-	fill: rgb(224,62,62);
-}
-.block-color-gray_background {
-	background: rgb(235,236,237);
-}
-.block-color-brown_background {
-	background: rgb(233,229,227);
-}
-.block-color-orange_background {
-	background: rgb(250,235,221);
-}
-.block-color-yellow_background {
-	background: rgb(251,243,219);
-}
-.block-color-teal_background {
-	background: rgb(221,237,234);
-}
-.block-color-blue_background {
-	background: rgb(221,235,241);
-}
-.block-color-purple_background {
-	background: rgb(234,228,242);
-}
-.block-color-pink_background {
-	background: rgb(244,223,235);
-}
-.block-color-red_background {
-	background: rgb(251,228,228);
-}
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="973b09eb-ee50-48fc-b67b-090c38219c05" class="page sans"><header><img class="page-cover-image" src="Improving Flowchart Editing Tools/Untitled_(1).png" style="object-position:center 51.669999999999995%"/><h1 class="page-title">Improving Flowchart Editing Tools</h1></header><div class="page-body"><p id="c5253580-e742-4cfa-ae28-7ba0071573aa" class="">Recently I have been investigating how to improve flowchart editing tools. Flowcharts and graphs are a powerful tool for understanding complex non-linear systems but they can be difficult to manipulate on computers. There are a few good digital tools for editing flowcharts like <a href="https://www.omnigroup.com/omnigraffle/">OmniGraffle</a> and <a href="https://whimsical.co">Whimsical</a>. But, I feel they could be improved by limiting the time spent on diagram layout and providing support for complex written content.</p><p id="a17f020d-3e40-4316-932f-c65bb877ed61" class="">In this article I&#x27;ll be using the <a href="https://en.wikipedia.org/wiki/Graph_theory">Graph Theory</a> terminology of nodes and edges to describe flowcharts. Nodes are the boxes in the flowchart and edges are the connecting lines.</p><figure id="695f18f5-3b21-414a-aa1e-218a238a9906" class="image"><a href="Improving Flowchart Editing Tools/Untitled.png"><img style="width:240px" src="Improving Flowchart Editing Tools/Untitled.png"/></a></figure><p id="692927ca-463e-4046-a8b1-899683e2bda0" class="">
-</p><p id="0172e4c2-31a0-407b-8b83-600c310c3271" class="">Currently if I need a flowchart for something like a new software architecture or to decompose a large project into dependent subtasks I have a couple of options:</p><p id="33ef4657-fc07-4ac6-9a32-21dc3baf12e0" class="">Whiteboards - I can draw it out on a Whiteboard. Whiteboards are by far the best interface for producing diagrams. They have infinite flexibility and instant feedback. The main downsides are pictures of whiteboards can&#x27;t be updated, it can be tedious to organize large detailed diagrams, and it is difficult to use whiteboards remotely.</p><p id="55cb1d05-49aa-466a-8a8f-4c8024254698" class="">Flowchart Tools - There are many tools for editing flowcharts online like <a href="https://whimsical.co">Whimsical</a>, <a href="https://plectica.com">Plectica</a>, <a href="https://www.omnigroup.com/omnigraffle/">OmniGraffle</a>, and <a href="https://www.lucidchart.com/pages/">Lucidchart</a>. I think Whimsical and Omnigraffle are well made and offer a large amount of flexibility. But, I spend too much time manually managing the chart layout. <strong>This is especially noticeable when diagrams are modified.</strong> Modifying a large diagram results in lots of shuffling. Adding or moving a node often makes the rest of the chart unpresentable. The user is then forced to re-organize all of the connecting edges. Additionally, typing long sections of text often cause nodes to overlap. This forces the user to switch from writing to move nodes back into a presentable layout.<div class="indented"><p id="efe728ee-a45c-4bb5-83b7-511b08a522e8" class="">Below is an example of me trying to switch a horizontal flowchart to a vertical layout in Whimsical. As I re-organize the chart is becomes a jumbled mess of connecting edges. </p><figure id="d5cdce59-4aaf-412b-8977-eed4054e9835"><div class="source"><a href="Improving Flowchart Editing Tools/Untitled.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fa4993eb-0e9e-44b8-8b65-d6e1c8bba872/Untitled.mov</a></div></figure><p id="64508ba8-82ff-445c-85f6-986840981ce4" class="">All of the existing chart editing tools force the user to manipulate the document at the pixel level. You need to specify where edges connect to a node, how the edges are laid out and the exact pixel position of the nodes. If anything changes the user is responsible for fixing the layout.</p><p id="5a8847f5-ab37-49e8-bd16-93a94b478ef7" class="">Another issue is flowchart tools seem to be oriented around writing a few lines per node. I would like to express complex information like a software system specification inside a node. Putting complex written ideas inside a node requires things like headers, checklists, images, tables, and embedded content (Github, Figma, etc.). </p><p id="3c306605-b74d-4820-a300-e92df9426511" class="">I do want to give a shoutout to <a href="https://www.plectica.com">Plectica</a>. Their layout model allows you to specify high level relationships like &quot;this node is connected to that node&quot;, without forcing you to specify exactly where the edge connects to the node. My main gripes with their tools are the interface is not good for high efficiency editing, and the line drawing algorithm is a little wonky. </p><figure id="1e58739e-2e2d-44c6-9518-d9440f06623f" class="image"><a href="Improving Flowchart Editing Tools/Untitled 1.png"><img style="width:2880px" src="Improving Flowchart Editing Tools/Untitled 1.png"/></a><figcaption>Plectica interface</figcaption></figure></div></p><p id="cfe17ba9-720e-43ae-a3ae-31a1d7fd270e" class="">Graphviz - <a href="https://www.graphviz.org">Graphviz</a> is a command line tool for visualizing graphs. The user only needs to specify the nodes and edges of the graph and the program will try to lay it out in a presentable manner. Graphviz is really great but it has a high barrier to entry. You need to learn the Graphviz language, there are lots of configuration options to understand, and if the graph does&#x27;t look right it&#x27;s difficult to figure out how to fix it. Often you are forced to use <a href="https://stackoverflow.com/questions/12934763/graphviz-edge-label-too-close-to-another-edge">hacks</a> to get the graph to look presentable. Also, there is not an easy way to share Graphviz programs. Given all of those difficulties it can still be used in a business context. Here is an example of p<a href="https://zwischenzugs.com/2017/12/18/project-management-as-code-with-graphviz/">roject management using Graphviz</a>.</p><figure id="7d712fa0-bf23-448b-b1e5-bd702326db88" class="image"><a href="Improving Flowchart Editing Tools/Untitled 2.png"><img style="width:432px" src="Improving Flowchart Editing Tools/Untitled 2.png"/></a><figcaption>Example graph from <a href="https://graphviz.gitlab.io/_pages/Documentation/TSE93.pdf"><em>A Technique for Drawing Directed Graphs</em></a></figcaption></figure><p id="a9c27a93-90db-488a-82ae-bb7277d1a37d" class="">None of the current options provide a satisfactory experience. I would like to have a chart drawing tool that lets me focus on the content and relationships of the chart. I don&#x27;t want to spend a lot of time tweaking the chart layout. Additionally I want to be able to express complex information inside the chart nodes. Essentially I want a tool that has the editing capabilities of <a href="https://notion.so">Notion</a> and the layout features of <a href="https://www.graphviz.org">Graphviz</a>. Below are some ideas to decrease the amount of time it takes to create and modify an aesthetically pleasing flowchart. In the following section I will describe a hypothetical tool named Tidy. To flesh out the concepts there are a few illustrative videos from a prototype I made.</p><h2 id="14cde3c1-3193-4148-8744-22e5461adffd" class="">Canvas Layout</h2><p id="b3fb8266-b7af-485e-afda-eaf0265b9fcc" class="">The primary difference of Tidy and current flowchart tools is the user has less control over the layout. The chart edges must always connect to a node or a piece of content and the user has no control over how the edges are laid out. Where the edge connects and how the edge is laid out is done automatically. Nodes cannot overlap. Here is an example of the edge repositioning itself as the node moves:</p><figure id="35f35e97-19d9-4893-8b01-e8c449b1ff48"><div class="source"><a href="Improving Flowchart Editing Tools/movement.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4a9ecb20-618e-4da3-babe-c7d283f311b2/movement.mov</a></div></figure><p id="c3634c40-f1ec-47f6-9800-05f01fb430cf" class="">Similar to Graphviz, the edges try to lay themselves out in the most aesthetically pleasing position possible. For example edges will never overlap nodes. The layout algorithm would likely follow similar aesthetic criteria to the Graphviz Dot Algorithm.</p><blockquote id="99443659-ed43-442c-b221-cd017333cc1c" class="">A1. Expose hierarchical structure in the graph. In particular, aim edges in the same general direction if
-possible. This aids finding directed paths and highlights source and sink nodes.
-A2. Avoid visual anomalies that do not convey information about the underlying graph. For example,
-avoid edge crossings and sharp bends.
-A3. Keep edges short. This makes it easier to find related nodes and contributes to A2.
-A4. Favor symmetry and balance. This aesthetic has a secondary role in a few places in our algorithm
-
-From: A Technique for Drawing Directed Graphs</blockquote><p id="dc1c84b8-5d22-4826-a44d-baf920b97a63" class="">I&#x27;m still not sure if it is possible to always layout the edges in such a way that the user doesn&#x27;t get annoyed. The user may need to be given high level controls to manipulate the edges. Here is an example of what it might look like to have edges move out of the way when they overlap with a node.</p><figure id="1654c3e0-8746-44cc-abfe-00de044f5975"><div class="source"><a href="Improving Flowchart Editing Tools/move_lines_layout.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/08d24eec-e4aa-4cac-8ec6-11637d14f514/move_lines_layout.mov</a></div></figure><p id="93dfaaeb-3171-41f6-a94f-62535803ec88" class="">Nodes are not allowed to overlap with each other. Dropping a node on another node or overlapping a node via typing causes the other node to move.</p><figure id="f3fd747a-4b7a-4f0e-ab79-4ff408396f2d"><div class="source"><a href="Improving Flowchart Editing Tools/moving_node.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f57ae5cd-7197-4854-932b-b67df4df272d/moving_node.mov</a></div></figure><p id="b02ca0fb-31b2-450a-939b-8fac23ff6ee9" class="">Edges need to be able to have labels similar to Graphviz.</p><figure id="628accc4-70f9-44e0-8301-51d1b8cc4e7c" class="image"><a href="Improving Flowchart Editing Tools/Untitled 3.png"><img style="width:604px" src="Improving Flowchart Editing Tools/Untitled 3.png"/></a></figure><p id="a5c64313-4b91-4858-a15b-0e65c2eeeef4" class="">Tidy would provide the ability to auto-layout a chart. There are many kinds of <a href="https://en.wikipedia.org/wiki/Graph_drawing">graph layout methods</a>. The most useful seems to be the hierarchical layout used by the <a href="https://graphviz.gitlab.io/_pages/Documentation/TSE93.pdf">Dot algorithm</a>. When a chart item is selected, Tidy could display buttons to auto-layout the selected chart. The user could choose from multiple layout styles. Here is an example of the user laying out the graph in a vertical hierarchical layout.</p><figure id="77c2e6a8-a2ca-414e-a513-08101bf3d2af"><div class="source"><a href="Improving Flowchart Editing Tools/auto_layout.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/91e55e1a-bcfe-4559-b108-16b849b2f5cc/auto_layout.mov</a></div></figure><p id="d281aed6-a9ae-46b6-8a9b-b66b653013fb" class="">I believe that by automating much of the tedious layout upkeep the user can spend more time focusing on the problem they are trying to solve. Also, auto-layout opens up many design possibilities like modifying a chart via api or quickly building out a chart with keyboard shortcuts.</p><h2 id="2a4ec928-f3e1-4aeb-93cb-04cb4b6d3317" class="">Node Content Layout</h2><p id="54e5f092-3213-4121-9791-77ac76f70790" class="">The existing flowchart tools have total flexibility of canvas layout but dramatically limit the format of content inside nodes. Flowcharts have the opportunity to contain more complex written content. There are 2 use cases I&#x27;m interested in supporting.</p><p id="e92ba9ec-a392-4c04-833b-67f11fe7bb9f" class="">First, <a href="http://www.feltpresence.com">Ryan Singer</a> has a prototyping methodology called <a href="https://www.feltpresence.com/breadboards.html">UI Breadboarding</a>. Essentially, it involves expressing an interface in terms of &quot;its affordances and connections between them&quot;. It allows you to prototype the users capabilities without being bogged down by how things will be arranged spatially. Ryan writes &quot;It boils down to some simple rules, like forcing all elements into a single column, and including important pieces of text alongside the functional components like buttons and fields&quot;. Below is an example mockup from Ryan&#x27;s Article. There is a more extensive writeup of the methodology in the book <a href="https://basecamp.com/shapeup">Shape Up</a>.</p><figure id="fbd2fcba-74f5-4a67-ba74-2943a7e4fed7" class="image"><a href="Improving Flowchart Editing Tools/Untitled 4.png"><img style="width:2280px" src="Improving Flowchart Editing Tools/Untitled 4.png"/></a><figcaption>Ryan Singer&#x27;s <a href="https://www.feltpresence.com/breadboards.html">UI Breadboard Mockup</a></figcaption></figure><p id="1101fca2-f262-4107-af79-1e6485edd269" class="">You could create this diagram in existing flowchart tools (I suspect he made the above diagram in OmniGraffle) but the existing tools do not make it easy. For example if you wanted to insert a new item you would have to manually resize the containing box and move all of the items below. Doing this might also cause the arrows to become mis-aligned.</p><p id="c282e992-10f1-49a3-82db-50a26f545918" class="">The second use case I would like to support is software system specification. Graphs are a powerful way to think about software systems. Gary Bernhard has a <a href="https://www.destroyallsoftware.com/compendium/software-structure?share_key=bc0f40ed8a61d43a">great article</a> about the importance of mental graphs in programming. Here he highlights the relationship between graphs and programming systems:</p><p id="eb3b17f6-07d4-4c80-a6f5-355d8e82002d" class=""><em>&quot;Graph relationships exist at all levels of scale, from the data dependencies between expressions in a function up to the dependencies between publicly published packages. This is good news for us: learning about one aspect of software structure reinforces our ability to think about others. It also means that all programmers eventually learn to think about graph relationships, even if that skill remains entirely automatic and subconscious. Programming requires understanding which functions call which other functions, which modules import which other modules, and which classes inherit from which other classes. Getting better at programming means, in part, getting better at thinking through more of those relationships without jumping to the functions and modules, examining them one by one.&quot;</em></p><p id="90067ad3-2133-4239-80f2-d61b9fdd509a" class="">When I design a new system I usually use pencil and paper to trace out some of these graph relationships. When I document the system I usually write it up into a wiki like Notion. It would be interesting to see if system specifications could be better expressed through graph relationships with big chunky long form nodes. Current tools don&#x27;t support this very well because they don&#x27;t allow for complex formatting like headers or embedded code snippets.</p><p id="c1baef9f-29e7-442a-bab0-4bcf6e068a85" class="">In order to support these of use cases I think it would be useful for Tidy to have something similar to Notion&#x27;s blocks. In Notion a block is an atomic unit of content. It can be a paragraph, checkbox, code snippet and many other things. They have a good writeup on blocks <a href="https://www.notion.so/What-is-a-block-e88f2d5154734d00863e1f6b97f849e5">here</a>. </p><p id="07f41a08-2249-4ce0-9163-022294fb81d2" class="">What is so neat about blocks is even though they contain different kinds of content they share the same affordances. All blocks can be reordered, transformed into other blocks, linked to, commented on, etc. The uniformity of affordances make blocks a powerful primitive.</p><figure id="5d62d625-d4fe-4991-95a2-bc2bfd73af49"><div class="source"><a href="Improving Flowchart Editing Tools/reorder_notion.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/40427ab3-9bfb-4ad2-ab15-269a2b13a076/reorder_notion.mov</a></div></figure><p id="c2c0ea5b-7a64-4a8a-83d6-63d2dc25a754" class="">I would like Tidy to support some form of &quot;block based editing&quot;. Organizing content in terms of blocks opens up many opportunities such as allowing edges to point to specific blocks. To support rapid prototyping, slash commands could be used to insert common UI element images like form inputs.</p><figure id="b347baad-440d-4c85-aad9-0131823bae00" class="image"><a href="Improving Flowchart Editing Tools/Slash_commands.gif"><img style="width:768px" src="Improving Flowchart Editing Tools/Slash_commands.gif"/></a><figcaption>From <a href="https://www.notion.so/Writing-editing-guide-68c7c67047494fdb87d50185429df93e">Notion&#x27;s guide to editing</a></figcaption></figure><p id="e8931899-c30e-462f-b918-7d8992a6bbc1" class="">Some aspects of Notion&#x27;s blocks would need to be modified because flowchart editing is different from document editing. The main difference is there are two layouts. The block layout inside a node and the canvas layout outside a node. </p><p id="ef72af27-ec68-4d74-b3e4-1b1f9fa9838b" class="">A big design challenge with introducing blocks is how to handle theses two layouts. The user needs to be able to drag the node and the blocks inside the node. The flowchart tool Plectica allows for nested nodes and handles the nested dragging via padding around the nodes. In practice, I found it hard to select the text areas with the mouse and it created a lot of visual clutter.</p><figure id="296b13e4-a2e1-415d-a4f5-a744ebe1d1e1"><div class="source"><a href="Improving Flowchart Editing Tools/plectica_dragging.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c33f399f-99e0-472d-9bb8-fa7ce5bde419/plectica_dragging.mov</a></div></figure><p id="eaa5f8ac-02a5-4407-ad3f-5e4fb4db643c" class="">Another open design question is should blocks be different from nodes? Can nodes be nested inside other nodes? In Notion everything is a block and that provides a powerful conceptual uniformity. But, nesting many nodes inside each other may make the layout difficult to manage for the user. </p><p id="58690584-e45c-43fa-98a5-afbe401e3735" class="">I&#x27;m not sure how or if Notion&#x27;s blocks should be integrated into flowchart editing but it seems like a promising avenue to explore.</p><h2 id="6e93846a-d8ee-48a5-999a-b054c0c3d565" class="">Editing Features</h2><p id="ce607c5d-c7ec-4cd6-b59a-d79c2a2c5b59" class="">I want Tidy&#x27;s style controls to be limited. The user should have enough room to make their ideas legible without cluttering the interface. Tools like Whimsical and Notion do a good job with this. Whimsical has an interesting article on the <a href="https://whimsical.com/design/contextual-toolbars-deep-dive/">design of their contextual toolbars</a>. Tidy would ideally have a similar level of style customization.</p><p id="b233a74b-b0d7-4907-a7cf-cc247cb0fa82" class="">
-</p><div id="ac2f439c-f79f-435a-acea-a159e03ecd3d" class="column-list"><div id="879cdc60-b0f5-4e37-9f77-c09b70ab0b50" style="width:33.333333333333336%" class="column"><figure id="6fdc0650-afa6-4755-a2b3-2e35332f9d89" class="image"><a href="Improving Flowchart Editing Tools/Untitled 5.png"><img style="width:1218px" src="Improving Flowchart Editing Tools/Untitled 5.png"/></a></figure></div><div id="5f35ec75-975d-42ef-a597-ae0ec7ad0f83" style="width:33.333333333333336%" class="column"><figure id="b63f5f74-0838-4157-a79f-6665985bfc68" class="image"><a href="Improving Flowchart Editing Tools/Untitled 6.png"><img style="width:542px" src="Improving Flowchart Editing Tools/Untitled 6.png"/></a></figure></div><div id="e2d2bfd9-047c-4c68-b856-4b05f3355a53" style="width:33.33333333333333%" class="column"><figure id="aa1243a0-780b-4e31-aa27-e2bb111b4525" class="image"><a href="Improving Flowchart Editing Tools/Untitled 7.png"><img style="width:1056px" src="Improving Flowchart Editing Tools/Untitled 7.png"/></a></figure></div></div><p id="b04a6ee4-a69a-44bd-883e-855a74a7b6a9" class="">In the interest of creating and modifying charts as efficiently as possible a tool like this needs to maintain incredibly high performance. Low latency in creative tools is incredibly <a href="https://www.inkandswitch.com/slow-software.html#toward-fast-software">important</a>. Many existing chart drawing tools tools do not have satisfactory performance. A production version of Tidy would need to be a native app or leverage web assembly similar to <a href="https://www.figma.com">Figma</a>. Kevin Lynagh prototyped a promising architecture that uses <a href="https://keminglabs.com/blog/building-a-fast-electron-app-with-rust/">Electron for the UI and Rust for most of the computation</a>. Something like that would be nice because you could leverage the browsers rendering capabilities while maintaining high performance. </p><p id="331874f1-90de-4904-9566-18fa736a9593" class="">In addition to the application being fast the user needs to be fast. Because I envision Tidy would primarily be used via laptop I want it to support mouse free editing as much as possible. It would likely need keyboard shortcuts for directionally creating new nodes (ex: command + right key to make a new node to the right) and directionally navigating nodes. Directionally navigating nodes can be difficult because nodes can be places 360 degrees around each other. I&#x27;m not sure how to solve this at the moment.</p><h2 id="7b98d295-628c-4216-80f9-fed519227b76" class="">Embedding in Other Tools:</h2><p id="166e976d-3bcd-4844-805a-ba2c1b398375" class="">Tidy needs to be symbiotic with other tools. A chart is usually part of a broader piece of knowledge. You may want to embed a chart inside a document, slack message or presentation. Ideally these embedded diagrams would be Iframes that can be manipulated. Embedded editing is especially useful inside document editors like Notion or Paper.</p><h2 id="096872a6-2262-43d7-8e30-3aa8d797d5cb" class="">Conclusion:</h2><p id="c929b97b-37dd-45cc-8dbe-a53cc724d10c" class="">By letting the computer do some of the tedious layout and allowing more expressive nodes, I think flowchart editing on computers could be dramatically improved. There are many technical and design challenges involved in the suggestions above but it seems like it seems possible. In the short term I plan to give this topic a rest. But, if you have any suggestions or comments feel free to reach out at zindlerb@gmail.com.</p><h2 id="ab1bca69-6040-49d1-90e9-54adbe54657e" class="">Interesting Research:</h2><p id="d7d912ed-c22f-448d-bcaf-1e39044d1b71" class="">These projects are not directly related to flowcharts but they exist in the same space of &quot;tools to understand complex systems&quot;.</p><h3 id="e1a7c0bc-1f6c-4c4e-93c8-9da109296f45" class=""><a href="https://sketch.systems/">Sketch Systems</a></h3><figure id="7b4177b7-e4c6-4f28-9f30-3f1ce5051daf" class="image"><a href="Improving Flowchart Editing Tools/Untitled 8.png"><img style="width:1828px" src="Improving Flowchart Editing Tools/Untitled 8.png"/></a></figure><p id="48f3da32-ca5a-465a-95ac-11541c4b249f" class="">Sketch Systems is a DSL for describing the state space of systems. There is an automatically generated visualization of the nested states in the app. Unlike Tidy, Sketch Systems is text based. </p><h3 id="fbbf0441-4f8f-4cb9-b703-2ba1e3417bda" class="">Ink &amp; Switch: <a href="https://www.inkandswitch.com/capstone-manuscript.html">Capstone</a> and <a href="https://www.inkandswitch.com/muse-studio-for-ideas.html">Muse Studio</a></h3><figure id="65c11453-88c2-41fb-bb7e-4e5f37b1ef40" class="image"><a href="Improving Flowchart Editing Tools/Untitled 9.png"><img style="width:1240px" src="Improving Flowchart Editing Tools/Untitled 9.png"/></a></figure><p id="f1b31c39-6c62-4f20-8013-77382f5ae219" class=""><a href="https://www.inkandswitch.com">Ink &amp; Switch</a> have produced interesting writeups on creating a tablet based tool for creative work.  Their focus is on more freeform work but they have a lot of really interesting ideas. They recently spun off Muse into its own <a href="https://museapp.com">product</a>. I&#x27;m excited to use it when it comes out!</p><p id="29300bb8-e9de-4602-aeef-e0b8f937dac6" class="">
-</p></div></article></body></html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta name="generator" content=
+          "HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 16.4), see www.w3.org">
+    <meta http-equiv="Content-Type" content=
+          "text/html; charset=us-ascii">
+    <title>Improving Flowchart Editing Tools</title>
+  </head>
+  <body>
+	  <div id="973b09eb-ee50-48fc-b67b-090c38219c05" class="page sans">
+		  <div>
+        <img class="page-cover-image" src=
+		         "Improving%20Flowchart%20Editing%20Tools/Untitled_(1).png" style=
+		         "object-position:center 51.669999999999995%">
+		    <h1 class="page-title">Improving Flowchart Editing Tools</h1>
+		  </div>
+		  <div class="page-body">
+		    <p id="c5253580-e742-4cfa-ae28-7ba0071573aa" class="">Recently I
+		      have been investigating how to improve flowchart editing tools.
+		      Flowcharts and graphs are a powerful tool for understanding complex
+		      non-linear systems but they can be difficult to manipulate on
+		      computers. There are a few good digital tools for editing
+		      flowcharts like <a href=
+		                         "https://www.omnigroup.com/omnigraffle/">OmniGraffle</a> and
+		      <a href="https://whimsical.co">Whimsical</a>. But, I feel they
+		      could be improved by limiting the time spent on diagram layout and
+		      providing support for complex written content.</p>
+		    <p id="a17f020d-3e40-4316-932f-c65bb877ed61" class="">In this
+		      article I'll be using the <a href=
+		                                   "https://en.wikipedia.org/wiki/Graph_theory">Graph Theory</a>
+		      terminology of nodes and edges to describe flowcharts. Nodes are
+		      the boxes in the flowchart and edges are the connecting lines.</p>
+		    <div id="695f18f5-3b21-414a-aa1e-218a238a9906" class="image">
+		      <a href=
+		         "Improving%20Flowchart%20Editing%20Tools/Untitled.png"><img style=
+		                                                                     "width:240px" src=
+		                                                                     "Improving%20Flowchart%20Editing%20Tools/Untitled.png"></a></div>
+		    <p id="692927ca-463e-4046-a8b1-899683e2bda0" class=""></p>
+		    <p id="0172e4c2-31a0-407b-8b83-600c310c3271" class="">Currently if
+		      I need a flowchart for something like a new software architecture
+		      or to decompose a large project into dependent subtasks I have a
+		      couple of options:</p>
+		    <p id="33ef4657-fc07-4ac6-9a32-21dc3baf12e0" class="">Whiteboards -
+		      I can draw it out on a Whiteboard. Whiteboards are by far the best
+		      interface for producing diagrams. They have infinite flexibility
+		      and instant feedback. The main downsides are pictures of
+		      whiteboards can't be updated, it can be tedious to organize large
+		      detailed diagrams, and it is difficult to use whiteboards
+		      remotely.</p>
+		    <p id="55cb1d05-49aa-466a-8a8f-4c8024254698" class="">Flowchart
+		      Tools - There are many tools for editing flowcharts online like
+		      <a href="https://whimsical.co">Whimsical</a>, <a href=
+		                                                       "https://plectica.com">Plectica</a>, <a href=
+		                                                                                               "https://www.omnigroup.com/omnigraffle/">OmniGraffle</a>, and
+		      <a href="https://www.lucidchart.com/pages/">Lucidchart</a>. I think
+		      Whimsical and Omnigraffle are well made and offer a large amount of
+		      flexibility. But, I spend too much time manually managing the chart
+		      layout. <strong>This is especially noticeable when diagrams are
+		        modified.</strong> Modifying a large diagram results in lots of
+		      shuffling. Adding or moving a node often makes the rest of the
+		      chart unpresentable. The user is then forced to re-organize all of
+		      the connecting edges. Additionally, typing long sections of text
+		      often cause nodes to overlap. This forces the user to switch from
+		      writing to move nodes back into a presentable layout.</p>
+		    <div class="indented">
+		      <p id="efe728ee-a45c-4bb5-83b7-511b08a522e8" class="">Below is an
+		        example of me trying to switch a horizontal flowchart to a vertical
+		        layout in Whimsical. As I re-organize the chart is becomes a
+		        jumbled mess of connecting edges.</p>
+		      <div id="d5cdce59-4aaf-412b-8977-eed4054e9835">
+		        <div class="source"><a href=
+		                               "Improving%20Flowchart%20Editing%20Tools/Untitled.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fa4993eb-0e9e-44b8-8b65-d6e1c8bba872/Untitled.mov</a></div>
+		      </div>
+		      <p id="64508ba8-82ff-445c-85f6-986840981ce4" class="">All of the
+		        existing chart editing tools force the user to manipulate the
+		        document at the pixel level. You need to specify where edges
+		        connect to a node, how the edges are laid out and the exact pixel
+		        position of the nodes. If anything changes the user is responsible
+		        for fixing the layout.</p>
+		      <p id="5a8847f5-ab37-49e8-bd16-93a94b478ef7" class="">Another issue
+		        is flowchart tools seem to be oriented around writing a few lines
+		        per node. I would like to express complex information like a
+		        software system specification inside a node. Putting complex
+		        written ideas inside a node requires things like headers,
+		        checklists, images, tables, and embedded content (Github, Figma,
+		        etc.).</p>
+		      <p id="3c306605-b74d-4820-a300-e92df9426511" class="">I do want to
+		        give a shoutout to <a href="https://www.plectica.com">Plectica</a>.
+		        Their layout model allows you to specify high level relationships
+		        like "this node is connected to that node", without forcing you to
+		        specify exactly where the edge connects to the node. My main gripes
+		        with their tools are the interface is not good for high efficiency
+		        editing, and the line drawing algorithm is a little wonky.</p>
+		      <div id="1e58739e-2e2d-44c6-9518-d9440f06623f" class="image">
+		        <a href=
+		           "Improving%20Flowchart%20Editing%20Tools/Untitled%201.png"><img style="width:2880px"
+		                                                                           src="Improving%20Flowchart%20Editing%20Tools/Untitled%201.png"></a>
+		        <div>Plectica interface</div>
+		      </div>
+		    </div>
+		    <p id="cfe17ba9-720e-43ae-a3ae-31a1d7fd270e" class="">Graphviz -
+		      <a href="https://www.graphviz.org">Graphviz</a> is a command line
+		      tool for visualizing graphs. The user only needs to specify the
+		      nodes and edges of the graph and the program will try to lay it out
+		      in a presentable manner. Graphviz is really great but it has a high
+		      barrier to entry. You need to learn the Graphviz language, there
+		      are lots of configuration options to understand, and if the graph
+		      does't look right it's difficult to figure out how to fix it. Often
+		      you are forced to use <a href=
+		                               "https://stackoverflow.com/questions/12934763/graphviz-edge-label-too-close-to-another-edge">
+		        hacks</a> to get the graph to look presentable. Also, there is not
+		      an easy way to share Graphviz programs. Given all of those
+		      difficulties it can still be used in a business context. Here is an
+		      example of p<a href=
+		                     "https://zwischenzugs.com/2017/12/18/project-management-as-code-with-graphviz/">roject
+		        management using Graphviz</a>.</p>
+		    <div id="7d712fa0-bf23-448b-b1e5-bd702326db88" class="image">
+		      <a href=
+		         "Improving%20Flowchart%20Editing%20Tools/Untitled%202.png"><img style="width:432px"
+		                                                                         src="Improving%20Flowchart%20Editing%20Tools/Untitled%202.png"></a>
+		      <div>Example graph from <a href=
+		                                 "https://graphviz.gitlab.io/_pages/Documentation/TSE93.pdf"><em>A
+		            Technique for Drawing Directed Graphs</em></a></div>
+		    </div>
+		    <p id="a9c27a93-90db-488a-82ae-bb7277d1a37d" class="">None of the
+		      current options provide a satisfactory experience. I would like to
+		      have a chart drawing tool that lets me focus on the content and
+		      relationships of the chart. I don't want to spend a lot of time
+		      tweaking the chart layout. Additionally I want to be able to
+		      express complex information inside the chart nodes. Essentially I
+		      want a tool that has the editing capabilities of <a href=
+		                                                          "https://notion.so">Notion</a> and the layout features of <a href=
+		                                                                                                                       "https://www.graphviz.org">Graphviz</a>. Below are some ideas to
+		      decrease the amount of time it takes to create and modify an
+		      aesthetically pleasing flowchart. In the following section I will
+		      describe a hypothetical tool named Tidy. To flesh out the concepts
+		      there are a few illustrative videos from a prototype I made.</p>
+		    <h2 id="14cde3c1-3193-4148-8744-22e5461adffd" class="">Canvas
+		      Layout</h2>
+		    <p id="b3fb8266-b7af-485e-afda-eaf0265b9fcc" class="">The primary
+		      difference of Tidy and current flowchart tools is the user has less
+		      control over the layout. The chart edges must always connect to a
+		      node or a piece of content and the user has no control over how the
+		      edges are laid out. Where the edge connects and how the edge is
+		      laid out is done automatically. Nodes cannot overlap. Here is an
+		      example of the edge repositioning itself as the node moves:</p>
+		    <div id="35f35e97-19d9-4893-8b01-e8c449b1ff48">
+		      <div class="source"><a href=
+		                             "Improving%20Flowchart%20Editing%20Tools/movement.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4a9ecb20-618e-4da3-babe-c7d283f311b2/movement.mov</a></div>
+		    </div>
+		    <p id="c3634c40-f1ec-47f6-9800-05f01fb430cf" class="">Similar to
+		      Graphviz, the edges try to lay themselves out in the most
+		      aesthetically pleasing position possible. For example edges will
+		      never overlap nodes. The layout algorithm would likely follow
+		      similar aesthetic criteria to the Graphviz Dot Algorithm.</p>
+		    <blockquote id="99443659-ed43-442c-b221-cd017333cc1c" class="">A1.
+		      Expose hierarchical structure in the graph. In particular, aim
+		      edges in the same general direction if possible. This aids finding
+		      directed paths and highlights source and sink nodes. A2. Avoid
+		      visual anomalies that do not convey information about the
+		      underlying graph. For example, avoid edge crossings and sharp
+		      bends. A3. Keep edges short. This makes it easier to find related
+		      nodes and contributes to A2. A4. Favor symmetry and balance. This
+		      aesthetic has a secondary role in a few places in our algorithm
+		      From: A Technique for Drawing Directed Graphs</blockquote>
+		    <p id="dc1c84b8-5d22-4826-a44d-baf920b97a63" class="">I'm still not
+		      sure if it is possible to always layout the edges in such a way
+		      that the user doesn't get annoyed. The user may need to be given
+		      high level controls to manipulate the edges. Here is an example of
+		      what it might look like to have edges move out of the way when they
+		      overlap with a node.</p>
+		    <div id="1654c3e0-8746-44cc-abfe-00de044f5975">
+		      <div class="source"><a href=
+		                             "Improving%20Flowchart%20Editing%20Tools/move_lines_layout.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/08d24eec-e4aa-4cac-8ec6-11637d14f514/move_lines_layout.mov</a></div>
+		    </div>
+		    <p id="93dfaaeb-3171-41f6-a94f-62535803ec88" class="">Nodes are not
+		      allowed to overlap with each other. Dropping a node on another node
+		      or overlapping a node via typing causes the other node to move.</p>
+		    <div id="f3fd747a-4b7a-4f0e-ab79-4ff408396f2d">
+		      <div class="source"><a href=
+		                             "Improving%20Flowchart%20Editing%20Tools/moving_node.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f57ae5cd-7197-4854-932b-b67df4df272d/moving_node.mov</a></div>
+		    </div>
+		    <p id="b02ca0fb-31b2-450a-939b-8fac23ff6ee9" class="">Edges need to
+		      be able to have labels similar to Graphviz.</p>
+		    <div id="628accc4-70f9-44e0-8301-51d1b8cc4e7c" class="image">
+		      <a href=
+		         "Improving%20Flowchart%20Editing%20Tools/Untitled%203.png"><img style="width:604px"
+		                                                                         src=
+		                                                                         "Improving%20Flowchart%20Editing%20Tools/Untitled%203.png"></a></div>
+		    <p id="a5c64313-4b91-4858-a15b-0e65c2eeeef4" class="">Tidy would
+		      provide the ability to auto-layout a chart. There are many kinds of
+		      <a href="https://en.wikipedia.org/wiki/Graph_drawing">graph layout
+		        methods</a>. The most useful seems to be the hierarchical layout
+		      used by the <a href=
+		                     "https://graphviz.gitlab.io/_pages/Documentation/TSE93.pdf">Dot
+		        algorithm</a>. When a chart item is selected, Tidy could display
+		      buttons to auto-layout the selected chart. The user could choose
+		      from multiple layout styles. Here is an example of the user laying
+		      out the graph in a vertical hierarchical layout.</p>
+		    <div id="77c2e6a8-a2ca-414e-a513-08101bf3d2af">
+		      <div class="source"><a href=
+		                             "Improving%20Flowchart%20Editing%20Tools/auto_layout.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/91e55e1a-bcfe-4559-b108-16b849b2f5cc/auto_layout.mov</a></div>
+		    </div>
+		    <p id="d281aed6-a9ae-46b6-8a9b-b66b653013fb" class="">I believe
+		      that by automating much of the tedious layout upkeep the user can
+		      spend more time focusing on the problem they are trying to solve.
+		      Also, auto-layout opens up many design possibilities like modifying
+		      a chart via api or quickly building out a chart with keyboard
+		      shortcuts.</p>
+		    <h2 id="2a4ec928-f3e1-4aeb-93cb-04cb4b6d3317" class="">Node Content
+		      Layout</h2>
+		    <p id="54e5f092-3213-4121-9791-77ac76f70790" class="">The existing
+		      flowchart tools have total flexibility of canvas layout but
+		      dramatically limit the format of content inside nodes. Flowcharts
+		      have the opportunity to contain more complex written content. There
+		      are 2 use cases I'm interested in supporting.</p>
+		    <p id="e92ba9ec-a392-4c04-833b-67f11fe7bb9f" class="">First,
+		      <a href="http://www.feltpresence.com">Ryan Singer</a> has a
+		      prototyping methodology called <a href=
+		                                        "https://www.feltpresence.com/breadboards.html">UI
+		        Breadboarding</a>. Essentially, it involves expressing an interface
+		      in terms of "its affordances and connections between them". It
+		      allows you to prototype the users capabilities without being bogged
+		      down by how things will be arranged spatially. Ryan writes "It
+		      boils down to some simple rules, like forcing all elements into a
+		      single column, and including important pieces of text alongside the
+		      functional components like buttons and fields". Below is an example
+		      mockup from Ryan's Article. There is a more extensive writeup of
+		      the methodology in the book <a href=
+		                                     "https://basecamp.com/shapeup">Shape Up</a>.</p>
+		    <div id="fbd2fcba-74f5-4a67-ba74-2943a7e4fed7" class="image">
+		      <a href=
+		         "Improving%20Flowchart%20Editing%20Tools/Untitled%204.png"><img style="width:2280px"
+		                                                                         src="Improving%20Flowchart%20Editing%20Tools/Untitled%204.png"></a>
+		      <div>Ryan Singer's <a href=
+		                            "https://www.feltpresence.com/breadboards.html">UI Breadboard
+		          Mockup</a></div>
+		    </div>
+		    <p id="1101fca2-f262-4107-af79-1e6485edd269" class="">You could
+		      create this diagram in existing flowchart tools (I suspect he made
+		      the above diagram in OmniGraffle) but the existing tools do not
+		      make it easy. For example if you wanted to insert a new item you
+		      would have to manually resize the containing box and move all of
+		      the items below. Doing this might also cause the arrows to become
+		      mis-aligned.</p>
+		    <p id="c282e992-10f1-49a3-82db-50a26f545918" class="">The second
+		      use case I would like to support is software system specification.
+		      Graphs are a powerful way to think about software systems. Gary
+		      Bernhard has a <a href=
+		                        "https://www.destroyallsoftware.com/compendium/software-structure?share_key=bc0f40ed8a61d43a">
+		        great article</a> about the importance of mental graphs in
+		      programming. Here he highlights the relationship between graphs and
+		      programming systems:</p>
+		    <p id="eb3b17f6-07d4-4c80-a6f5-355d8e82002d" class=""><em>"Graph
+		        relationships exist at all levels of scale, from the data
+		        dependencies between expressions in a function up to the
+		        dependencies between publicly published packages. This is good news
+		        for us: learning about one aspect of software structure reinforces
+		        our ability to think about others. It also means that all
+		        programmers eventually learn to think about graph relationships,
+		        even if that skill remains entirely automatic and subconscious.
+		        Programming requires understanding which functions call which other
+		        functions, which modules import which other modules, and which
+		        classes inherit from which other classes. Getting better at
+		        programming means, in part, getting better at thinking through more
+		        of those relationships without jumping to the functions and
+		        modules, examining them one by one."</em></p>
+		    <p id="90067ad3-2133-4239-80f2-d61b9fdd509a" class="">When I design
+		      a new system I usually use pencil and paper to trace out some of
+		      these graph relationships. When I document the system I usually
+		      write it up into a wiki like Notion. It would be interesting to see
+		      if system specifications could be better expressed through graph
+		      relationships with big chunky long form nodes. Current tools don't
+		      support this very well because they don't allow for complex
+		      formatting like headers or embedded code snippets.</p>
+		    <p id="c1baef9f-29e7-442a-bab0-4bcf6e068a85" class="">In order to
+		      support these of use cases I think it would be useful for Tidy to
+		      have something similar to Notion's blocks. In Notion a block is an
+		      atomic unit of content. It can be a paragraph, checkbox, code
+		      snippet and many other things. They have a good writeup on blocks
+		      <a href=
+		         "https://www.notion.so/What-is-a-block-e88f2d5154734d00863e1f6b97f849e5">
+		        here</a>.</p>
+		    <p id="07f41a08-2249-4ce0-9163-022294fb81d2" class="">What is so
+		      neat about blocks is even though they contain different kinds of
+		      content they share the same affordances. All blocks can be
+		      reordered, transformed into other blocks, linked to, commented on,
+		      etc. The uniformity of affordances make blocks a powerful
+		      primitive.</p>
+		    <div id="5d62d625-d4fe-4991-95a2-bc2bfd73af49">
+		      <div class="source"><a href=
+		                             "Improving%20Flowchart%20Editing%20Tools/reorder_notion.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/40427ab3-9bfb-4ad2-ab15-269a2b13a076/reorder_notion.mov</a></div>
+		    </div>
+		    <p id="c2c0ea5b-7a64-4a8a-83d6-63d2dc25a754" class="">I would like
+		      Tidy to support some form of "block based editing". Organizing
+		      content in terms of blocks opens up many opportunities such as
+		      allowing edges to point to specific blocks. To support rapid
+		      prototyping, slash commands could be used to insert common UI
+		      element images like form inputs.</p>
+		    <div id="b347baad-440d-4c85-aad9-0131823bae00" class="image">
+		      <a href=
+		         "Improving%20Flowchart%20Editing%20Tools/Slash_commands.gif"><img style="width:768px"
+		                                                                           src=
+		                                                                           "Improving%20Flowchart%20Editing%20Tools/Slash_commands.gif"></a>
+		      <div>From <a href=
+		                   "https://www.notion.so/Writing-editing-guide-68c7c67047494fdb87d50185429df93e">
+		          Notion's guide to editing</a></div>
+		    </div>
+		    <p id="e8931899-c30e-462f-b918-7d8992a6bbc1" class="">Some aspects
+		      of Notion's blocks would need to be modified because flowchart
+		      editing is different from document editing. The main difference is
+		      there are two layouts. The block layout inside a node and the
+		      canvas layout outside a node.</p>
+		    <p id="ef72af27-ec68-4d74-b3e4-1b1f9fa9838b" class="">A big design
+		      challenge with introducing blocks is how to handle theses two
+		      layouts. The user needs to be able to drag the node and the blocks
+		      inside the node. The flowchart tool Plectica allows for nested
+		      nodes and handles the nested dragging via padding around the nodes.
+		      In practice, I found it hard to select the text areas with the
+		      mouse and it created a lot of visual clutter.</p>
+		    <div id="296b13e4-a2e1-415d-a4f5-a744ebe1d1e1">
+		      <div class="source"><a href=
+		                             "Improving%20Flowchart%20Editing%20Tools/plectica_dragging.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c33f399f-99e0-472d-9bb8-fa7ce5bde419/plectica_dragging.mov</a></div>
+		    </div>
+		    <p id="eaa5f8ac-02a5-4407-ad3f-5e4fb4db643c" class="">Another open
+		      design question is should blocks be different from nodes? Can nodes
+		      be nested inside other nodes? In Notion everything is a block and
+		      that provides a powerful conceptual uniformity. But, nesting many
+		      nodes inside each other may make the layout difficult to manage for
+		      the user.</p>
+		    <p id="58690584-e45c-43fa-98a5-afbe401e3735" class="">I'm not sure
+		      how or if Notion's blocks should be integrated into flowchart
+		      editing but it seems like a promising avenue to explore.</p>
+		    <h2 id="6e93846a-d8ee-48a5-999a-b054c0c3d565" class="">Editing
+		      Features</h2>
+		    <p id="ce607c5d-c7ec-4cd6-b59a-d79c2a2c5b59" class="">I want Tidy's
+		      style controls to be limited. The user should have enough room to
+		      make their ideas legible without cluttering the interface. Tools
+		      like Whimsical and Notion do a good job with this. Whimsical has an
+		      interesting article on the <a href=
+		                                    "https://whimsical.com/design/contextual-toolbars-deep-dive/">design
+		        of their contextual toolbars</a>. Tidy would ideally have a similar
+		      level of style customization.</p>
+		    <p id="b233a74b-b0d7-4907-a7cf-cc247cb0fa82" class=""></p>
+		    <div id="ac2f439c-f79f-435a-acea-a159e03ecd3d" class="column-list">
+		      <div id="879cdc60-b0f5-4e37-9f77-c09b70ab0b50" style=
+		           "width:33.333333333333336%" class="column">
+		        <div id="6fdc0650-afa6-4755-a2b3-2e35332f9d89" class="image">
+		          <a href=
+		             "Improving%20Flowchart%20Editing%20Tools/Untitled%205.png"><img style="width:1218px"
+		                                                                             src=
+		                                                                             "Improving%20Flowchart%20Editing%20Tools/Untitled%205.png"></a></div>
+		      </div>
+		      <div id="5f35ec75-975d-42ef-a597-ae0ec7ad0f83" style=
+		           "width:33.333333333333336%" class="column">
+		        <div id="b63f5f74-0838-4157-a79f-6665985bfc68" class="image">
+		          <a href=
+		             "Improving%20Flowchart%20Editing%20Tools/Untitled%206.png"><img style="width:542px"
+		                                                                             src=
+		                                                                             "Improving%20Flowchart%20Editing%20Tools/Untitled%206.png"></a></div>
+		      </div>
+		      <div id="e2d2bfd9-047c-4c68-b856-4b05f3355a53" style=
+		           "width:33.33333333333333%" class="column">
+		        <div id="aa1243a0-780b-4e31-aa27-e2bb111b4525" class="image">
+		          <a href=
+		             "Improving%20Flowchart%20Editing%20Tools/Untitled%207.png"><img style="width:1056px"
+		                                                                             src=
+		                                                                             "Improving%20Flowchart%20Editing%20Tools/Untitled%207.png"></a></div>
+		      </div>
+		    </div>
+		    <p id="b04a6ee4-a69a-44bd-883e-855a74a7b6a9" class="">In the
+		      interest of creating and modifying charts as efficiently as
+		      possible a tool like this needs to maintain incredibly high
+		      performance. Low latency in creative tools is incredibly <a href=
+		                                                                  "https://www.inkandswitch.com/slow-software.html#toward-fast-software">
+		        important</a>. Many existing chart drawing tools tools do not have
+		      satisfactory performance. A production version of Tidy would need
+		      to be a native app or leverage web assembly similar to <a href=
+		                                                                "https://www.figma.com">Figma</a>. Kevin Lynagh prototyped a
+		      promising architecture that uses <a href=
+		                                          "https://keminglabs.com/blog/building-a-fast-electron-app-with-rust/">
+		        Electron for the UI and Rust for most of the computation</a>.
+		      Something like that would be nice because you could leverage the
+		      browsers rendering capabilities while maintaining high
+		      performance.</p>
+		    <p id="331874f1-90de-4904-9566-18fa736a9593" class="">In addition
+		      to the application being fast the user needs to be fast. Because I
+		      envision Tidy would primarily be used via laptop I want it to
+		      support mouse free editing as much as possible. It would likely
+		      need keyboard shortcuts for directionally creating new nodes (ex:
+		      command + right key to make a new node to the right) and
+		      directionally navigating nodes. Directionally navigating nodes can
+		      be difficult because nodes can be places 360 degrees around each
+		      other. I'm not sure how to solve this at the moment.</p>
+		    <h2 id="7b98d295-628c-4216-80f9-fed519227b76" class="">Embedding in
+		      Other Tools:</h2>
+		    <p id="166e976d-3bcd-4844-805a-ba2c1b398375" class="">Tidy needs to
+		      be symbiotic with other tools. A chart is usually part of a broader
+		      piece of knowledge. You may want to embed a chart inside a
+		      document, slack message or presentation. Ideally these embedded
+		      diagrams would be Iframes that can be manipulated. Embedded editing
+		      is especially useful inside document editors like Notion or
+		      Paper.</p>
+		    <h2 id="096872a6-2262-43d7-8e30-3aa8d797d5cb" class="">
+		      Conclusion:</h2>
+		    <p id="c929b97b-37dd-45cc-8dbe-a53cc724d10c" class="">By letting
+		      the computer do some of the tedious layout and allowing more
+		      expressive nodes, I think flowchart editing on computers could be
+		      dramatically improved. There are many technical and design
+		      challenges involved in the suggestions above but it seems like it
+		      seems possible. In the short term I plan to give this topic a rest.
+		      But, if you have any suggestions or comments feel free to reach out
+		      at zindlerb@gmail.com.</p>
+		    <h2 id="ab1bca69-6040-49d1-90e9-54adbe54657e" class="">Interesting
+		      Research:</h2>
+		    <p id="d7d912ed-c22f-448d-bcaf-1e39044d1b71" class="">These
+		      projects are not directly related to flowcharts but they exist in
+		      the same space of "tools to understand complex systems".</p>
+		    <h3 id="e1a7c0bc-1f6c-4c4e-93c8-9da109296f45" class=""><a href=
+		                                                              "https://sketch.systems/">Sketch Systems</a></h3>
+		    <div id="7b4177b7-e4c6-4f28-9f30-3f1ce5051daf" class="image">
+		      <a href=
+		         "Improving%20Flowchart%20Editing%20Tools/Untitled%208.png"><img style="width:1828px"
+		                                                                         src=
+		                                                                         "Improving%20Flowchart%20Editing%20Tools/Untitled%208.png"></a></div>
+		    <p id="48f3da32-ca5a-465a-95ac-11541c4b249f" class="">Sketch
+		      Systems is a DSL for describing the state space of systems. There
+		      is an automatically generated visualization of the nested states in
+		      the app. Unlike Tidy, Sketch Systems is text based.</p>
+		    <h3 id="fbbf0441-4f8f-4cb9-b703-2ba1e3417bda" class="">Ink &amp;
+		      Switch: <a href=
+		                 "https://www.inkandswitch.com/capstone-manuscript.html">Capstone</a>
+		      and <a href=
+		             "https://www.inkandswitch.com/muse-studio-for-ideas.html">Muse
+		        Studio</a></h3>
+		    <div id="65c11453-88c2-41fb-bb7e-4e5f37b1ef40" class="image">
+		      <a href=
+		         "Improving%20Flowchart%20Editing%20Tools/Untitled%209.png"><img style="width:1240px"
+		                                                                         src=
+		                                                                         "Improving%20Flowchart%20Editing%20Tools/Untitled%209.png"></a></div>
+		    <p id="f1b31c39-6c62-4f20-8013-77382f5ae219" class=""><a href=
+		                                                             "https://www.inkandswitch.com">Ink &amp; Switch</a> have produced
+		      interesting writeups on creating a tablet based tool for creative
+		      work. Their focus is on more freeform work but they have a lot of
+		      really interesting ideas. They recently spun off Muse into its own
+		      <a href="https://museapp.com">product</a>. I'm excited to use it
+		      when it comes out!</p>
+		    <p id="29300bb8-e9de-4602-aeef-e0b8f937dac6" class=""></p>
+		  </div>
+	  </div>
+  </body>
+</html>
