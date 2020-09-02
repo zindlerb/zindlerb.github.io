@@ -1,0 +1,160 @@
+<html>
+  <!--
+       Important things:
+       - locality - prevent context switching between ingredients and recipe
+
+       Ingredients for shopping
+         - auto conversion of units
+         - adjust servings (provide bounds)
+
+         - ingredients offer alternative subs
+       Recipe for doing:
+         - what are the parts? how much time will it take?
+
+       further expansions - interweave video -
+
+       https://www.thekitchn.com/good-question-49-83754
+    -->
+  <head>
+    <style>
+      body {
+        padding: 100px 0;
+        max-width: 750px;
+        margin: auto;
+        font-size: 18px;
+        font-family: system-ui;
+        line-height: 1.3;
+      }
+
+      a, .inline-amount {
+        color: rgb(55, 53, 47);
+        opacity:0.7;
+      }
+
+      li {
+        display: flex;
+        margin: 12px 0px;
+      }
+
+      .amount {
+        width: 250px;
+        text-align: left;
+      }
+
+      .ingredient {
+        margin-right: 16px;
+        width: 200px;
+      }
+
+      ul {
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Pork Chile Verde with Red Chile Salsa</h1>
+    <div>Servings: 8 - Cook time: 30 min - Total time: 3.5 hours</div>
+    <img src='./chili-verde.jpg'/>
+    <!-- little diagram of the cook time. Understand when I will need to be involved  -->
+    <div>
+      <h2>INGREDIENTS</h2>
+      <ul>
+        <!--
+             flip the ingredient and amount
+             units here need to be oriented around what can be bought in the grocery store
+          -->
+        <li>
+          <span class='ingredient'>Chicken Broth</span> <span class='amount'>3 cups (or more) <a href='#divided-definition'>divided</a></span>
+        </li>
+        <li><span class='ingredient'>Tomatillos</span> <span class='amount'>1 pound  <a href='#divided-definition'>divided</a></span></li>
+        <li><span class='ingredient'>Green Onions</span> <span class='amount'>1 bunch</span></li>
+        <li><span class='ingredient'>Fresh Cilantro with Tender Stems</span> <span class='amount'>1 and 1/2 cups (packed)</span></li>
+        <li><span class='ingredient'>Garlic Cloves</span> <span class='amount'>6</span></li>
+        <li><span class='ingredient'>Olive oil</span></li>
+        <li><span class='ingredient'>Pork Shoulder (Boston butt)</span> <span class='amount'>4 to 4 1/2 pounds</span></li>
+        <li><span class='ingredient'>Large Onion</span> <span class='amount'>1 (about 2 cups)</span></li>
+        <li><span class='ingredient'>Cumin Seeds</span> <span class='amount'>1 tablespoon</span></li>
+        <li><span class='ingredient'>Mild Green Chiles (such as Hatch or Anaheim Chiles)</span> <span class='amount'>3/4 cup</span></li> <!-- this should really be how many to buy -->
+        <li><span class='ingredient'>Dried Oregano (preferably Mexican)</span> <span class='amount'>2 teaspoons</span></li>
+        <li><span class='ingredient'>Yukon Gold potatoes</span> <span class='amount'>1 pound</span></li>
+        <li><span class='ingredient'>Cilantro</span></li>
+        <li><span class='ingredient'>Red Chile Salsa</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>RECIPE PREPARATION</h2>
+      <h3>Prep Ingredients (10 min)</h3>
+      <p>Chop Large Onion <span class='inline-amount'>(1)</span></p>
+      <p>Trim pork shoulder <span class='inline-amount'>(4-4.5 pounds)</span></p>
+      <p>Peel garlic cloves <span class='inline-amount'>(6 cloves)</span></p>
+      <p>Coursely chop green onions <span class='inline-amount'>(1 bunch)</span></p>
+      <p>Husk, rinse and cut tomatillos <span class='inline-amount'>(1 pound)</span> into 1/2-inch wedges </p>
+      <p>Dice, peel, and seed peppers <span class='inline-amount'>(3/4 cup)</span></p>
+      <p>Peel and cut potatoes into 3/4-inch cubes <span class='inline-amount'>(1 pound)</span></p>
+      <h3>Make Salsa Verde (10 min)</h3>
+      <p>Puree 2 cups chicken broth, 1/4 of tomatillos <span class='inline-amount'>(1/4 pound)</span>, green onions <span class='inline-amount'>(1 bunch)</span>, cilantro with stems, and garlic <span class='inline-amount'>(6 cloves)</span> in blender. Set salsa verde aside.</p>
+      <h3>Cook Pork + Tomatillos (2.5 hrs) - Can be made 3 days ahead</h3>
+      <p>Brush heavy large pot with oil; heat over medium-high heat. Sprinkle pork with salt and pepper. Working in batches, add pork to pot; cook until browned, turning occasionally, about 4 minutes per batch. Using slotted spoon, transfer pork to bowl. Pour off all but 1 tablespoon fat from pot (add oil if needed). Add onion <span class='inline-amount'>(1)</span> to pot; sauté until soft, about 5 minutes. Sprinkle cumin seeds <span class='inline-amount'>(1 tablespoon)</span> over; cook until onion is golden and cumin is toasted, about 2 minutes. Add remaining tomatillos; cook until tender and browned in spots, stirring occasionally and reducing heat to medium if browning too quickly, about 8 minutes. Return pork and any juices to pot. Add 2 cups reserved salsa verde, 1 cup broth, chiles <span class='inline-amount'>(3/4 cup)</span>, and oregano <span class='inline-amount'>2 tsp</span>. Cover; simmer over medium-low heat until pork is tender, about 2 hours. Chill uncovered until cold, then cover and keep chilled.</p>
+      <h3>Cook Potatoes (30 min)</h3>
+      <p>Bring to simmer before continuing. Add potatoes to pork. Simmer until potatoes are tender, about 30 minutes. Stir in remaining salsa verde; bring to simmer. Thin with additional broth, if desired. Season with salt and pepper.</p>
+      <p>Divide chile verde among bowls. Top with cilantro and dollop of Red Chile Salsa.</p>
+    </div>
+
+    <div>
+      <h2>Nutritional Content (1 serving)</h2>
+      <table>
+        <tr>
+            <td>Calories (kcal)</td>
+            <td>495.2</td>
+        </tr>
+	<tr>
+            <td>%Calories from Fat</td>
+            <td>40.7</td>
+        </tr>
+        <tr>
+            <td>Fat (g)</td>
+            <td>22.4</td>
+        </tr>
+        <tr>
+            <td>Saturated Fat (g)</td>
+            <td>7.2</td>
+        </tr>
+        <tr>
+            <td>Cholesterol (mg)</td>
+            <td>145.8</td>
+        </tr>
+        <tr>
+            <td>Carbohydrates (g)</td>
+            <td>28.4</td>
+        </tr>
+        <tr>
+            <td>Dietary Fiber (g)</td>
+            <td>4.5</td>
+        </tr>
+        <tr>
+            <td>Total Sugars (g)</td>
+            <td>10.3</td>
+        </tr>
+        <tr>
+            <td>Net Carbs (g)</td>
+            <td>23.9</td>
+        </tr>
+        <tr>
+            <td>Protein (g)</td>
+            <td>44.5</td>
+        </tr>
+        <tr>
+            <td>Sodium (mg)</td>
+            <td>483.7</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <h2>Glossary</h2>
+      <p id="divided-definition">
+        Divided - This ingredient will not be dumped into the recipe all at once. It will be “divided” or used in more than one place over the course of the recipe instructions.
+      </p>
+    </div>
+  </body>
+</html>

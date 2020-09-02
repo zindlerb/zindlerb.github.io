@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "build": "node ./build_site.js && webpack",
-      "clean": "node ./clean.js"
+    "build": "node ./build_site.js && webpack",
+    "clean": "node ./clean.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,8 @@
   "homepage": "https://github.com/zindlerb/zindlerb.github.io#readme",
   "dependencies": {
     "handlebars": "^4.0.6",
+    "html-prettify": "^1.0.3",
+    "markdown": "^0.5.0",
     "marked": "^0.3.6",
     "rimraf": "^2.6.1",
     "slug": "^0.9.1"

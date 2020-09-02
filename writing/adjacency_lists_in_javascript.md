@@ -1,7 +1,3 @@
-title: Adjacency Lists in Javascript
-description: A Javascript Implementation of Adjacency List methods from the Algorithm Design Manual
-link: /adjacency-lists-in-javascript
-~---~
 # Ajacency Lists in Javascript
 
 I have been reading through the [Algorithm Design Manual](http://www.algorist.com/). In order to get a deeper understanding of the graph algorithms in Chapter 5, I decided to reimplement them in Javascript. Checkout the github repo [here](https://github.com/zindlerb/javascript_adjacency_list).
